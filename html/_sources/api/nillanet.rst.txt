@@ -1,0 +1,20 @@
+nillanet module
+=========
+
+.. automodule:: nillanet.model
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: nillanet.activations
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: nillanet.loss
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: nillanet.io
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
