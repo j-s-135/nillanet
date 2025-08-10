@@ -1,0 +1,453 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nillanet module &mdash; nillanet  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="tests module" href="tests.html" />
+    <link rel="prev" title="documentation" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            nillanet
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">nillanet module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#nillanet.model.NN"><code class="docutils literal notranslate"><span class="pre">NN</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.model.NN.X"><code class="docutils literal notranslate"><span class="pre">NN.X</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.model.NN.Y"><code class="docutils literal notranslate"><span class="pre">NN.Y</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.model.NN.W"><code class="docutils literal notranslate"><span class="pre">NN.W</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.model.NN.architecture"><code class="docutils literal notranslate"><span class="pre">NN.architecture</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.model.NN.learning_rate"><code class="docutils literal notranslate"><span class="pre">NN.learning_rate</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.model.NN.batch"><code class="docutils literal notranslate"><span class="pre">NN.batch()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.model.NN.predict"><code class="docutils literal notranslate"><span class="pre">NN.predict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.model.NN.summary"><code class="docutils literal notranslate"><span class="pre">NN.summary()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.model.NN.train"><code class="docutils literal notranslate"><span class="pre">NN.train()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#nillanet.activations.Activations"><code class="docutils literal notranslate"><span class="pre">Activations</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.activations.Activations.linear"><code class="docutils literal notranslate"><span class="pre">Activations.linear()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.activations.Activations.linear_derivative"><code class="docutils literal notranslate"><span class="pre">Activations.linear_derivative()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.activations.Activations.relu"><code class="docutils literal notranslate"><span class="pre">Activations.relu()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.activations.Activations.relu_derivative"><code class="docutils literal notranslate"><span class="pre">Activations.relu_derivative()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.activations.Activations.sigmoid"><code class="docutils literal notranslate"><span class="pre">Activations.sigmoid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.activations.Activations.sigmoid_derivative"><code class="docutils literal notranslate"><span class="pre">Activations.sigmoid_derivative()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.activations.Activations.softmax_matrix"><code class="docutils literal notranslate"><span class="pre">Activations.softmax_matrix()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.activations.Activations.softmax_matrix_derivative"><code class="docutils literal notranslate"><span class="pre">Activations.softmax_matrix_derivative()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.activations.Activations.softmax_vector"><code class="docutils literal notranslate"><span class="pre">Activations.softmax_vector()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.activations.Activations.softmax_vector_derivative"><code class="docutils literal notranslate"><span class="pre">Activations.softmax_vector_derivative()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.activations.Activations.sum_to_one"><code class="docutils literal notranslate"><span class="pre">Activations.sum_to_one()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.activations.Activations.tanh"><code class="docutils literal notranslate"><span class="pre">Activations.tanh()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.activations.Activations.tanh_derivative"><code class="docutils literal notranslate"><span class="pre">Activations.tanh_derivative()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#nillanet.loss.Loss"><code class="docutils literal notranslate"><span class="pre">Loss</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.loss.Loss.binary_crossentropy"><code class="docutils literal notranslate"><span class="pre">Loss.binary_crossentropy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.loss.Loss.binary_crossentropy_derivative"><code class="docutils literal notranslate"><span class="pre">Loss.binary_crossentropy_derivative()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.loss.Loss.categorical_crossentropy"><code class="docutils literal notranslate"><span class="pre">Loss.categorical_crossentropy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.loss.Loss.categorical_crossentropy_derivative"><code class="docutils literal notranslate"><span class="pre">Loss.categorical_crossentropy_derivative()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.loss.Loss.mse"><code class="docutils literal notranslate"><span class="pre">Loss.mse()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.loss.Loss.mse_derivative"><code class="docutils literal notranslate"><span class="pre">Loss.mse_derivative()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.loss.Loss.top1_loss"><code class="docutils literal notranslate"><span class="pre">Loss.top1_loss()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#nillanet.io.IO"><code class="docutils literal notranslate"><span class="pre">IO</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.io.IO.load"><code class="docutils literal notranslate"><span class="pre">IO.load()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.io.IO.save"><code class="docutils literal notranslate"><span class="pre">IO.save()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">tests module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">nillanet</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">nillanet module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/nillanet.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="nillanet-module">
+<h1>nillanet module<a class="headerlink" href="#nillanet-module" title="Link to this heading"></a></h1>
+<dl class="py class" id="module-nillanet.model">
+<dt class="sig sig-object py" id="nillanet.model.NN">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nillanet.model.</span></span><span class="sig-name descname"><span class="pre">NN</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">architecture</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">derivative1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classifier</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">derivative2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">derivative3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learning_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">cupy.float32</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/model.html#NN"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.model.NN" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Minimal feedforward neural network using CuPy.</p>
+<p>This class implements batched SGD with configurable activation,
+classifier, and loss functions. Inputs/targets are kept on device
+to avoid host↔device copies.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input</strong> (<a class="reference external" href="https://docs.cupy.dev/en/stable/reference/generated/cupy.ndarray.html#cupy.ndarray" title="(in CuPy v13.5.1)"><em>cupy.ndarray</em></a><em> | </em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a>) – Training inputs of shape
+(n_samples, n_features). If NumPy, it will be moved to device.</p></li>
+<li><p><strong>output</strong> (<a class="reference external" href="https://docs.cupy.dev/en/stable/reference/generated/cupy.ndarray.html#cupy.ndarray" title="(in CuPy v13.5.1)"><em>cupy.ndarray</em></a><em> | </em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a>) – Training targets of shape
+(n_samples, n_outputs). If NumPy, it will be moved to device.</p></li>
+<li><p><strong>architecture</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>]</em>) – Units per layer, including output layer.</p></li>
+<li><p><strong>activation</strong> (<em>Callable</em><em>[</em><em>[</em><a class="reference external" href="https://docs.cupy.dev/en/stable/reference/generated/cupy.ndarray.html#cupy.ndarray" title="(in CuPy v13.5.1)"><em>cupy.ndarray</em></a><em>]</em><em>, </em><a class="reference external" href="https://docs.cupy.dev/en/stable/reference/generated/cupy.ndarray.html#cupy.ndarray" title="(in CuPy v13.5.1)"><em>cupy.ndarray</em></a><em>]</em>) – Hidden-layer
+activation function.</p></li>
+<li><p><strong>derivative1</strong> (<em>Callable</em><em>[</em><em>[</em><a class="reference external" href="https://docs.cupy.dev/en/stable/reference/generated/cupy.ndarray.html#cupy.ndarray" title="(in CuPy v13.5.1)"><em>cupy.ndarray</em></a><em>]</em><em>, </em><a class="reference external" href="https://docs.cupy.dev/en/stable/reference/generated/cupy.ndarray.html#cupy.ndarray" title="(in CuPy v13.5.1)"><em>cupy.ndarray</em></a><em>]</em>) – Derivative of
+<code class="docutils literal notranslate"><span class="pre">activation</span></code> evaluated at pre-activations.</p></li>
+<li><p><strong>classifier</strong> (<em>Callable</em><em>[</em><em>[</em><a class="reference external" href="https://docs.cupy.dev/en/stable/reference/generated/cupy.ndarray.html#cupy.ndarray" title="(in CuPy v13.5.1)"><em>cupy.ndarray</em></a><em>]</em><em>, </em><a class="reference external" href="https://docs.cupy.dev/en/stable/reference/generated/cupy.ndarray.html#cupy.ndarray" title="(in CuPy v13.5.1)"><em>cupy.ndarray</em></a><em>]</em>) – Output-layer
+transfer function (e.g., identity, sigmoid, softmax).</p></li>
+<li><p><strong>derivative2</strong> (<em>Callable</em><em>[</em><em>[</em><a class="reference external" href="https://docs.cupy.dev/en/stable/reference/generated/cupy.ndarray.html#cupy.ndarray" title="(in CuPy v13.5.1)"><em>cupy.ndarray</em></a><em>]</em><em>, </em><a class="reference external" href="https://docs.cupy.dev/en/stable/reference/generated/cupy.ndarray.html#cupy.ndarray" title="(in CuPy v13.5.1)"><em>cupy.ndarray</em></a><em>]</em>) – Derivative of
+<code class="docutils literal notranslate"><span class="pre">classifier</span></code> evaluated at pre-activations.</p></li>
+<li><p><strong>loss</strong> (<em>Callable</em><em>[</em><em>...</em><em>, </em><a class="reference external" href="https://docs.cupy.dev/en/stable/reference/generated/cupy.ndarray.html#cupy.ndarray" title="(in CuPy v13.5.1)"><em>cupy.ndarray</em></a><em>]</em>) – Loss function that accepts
+named arguments (e.g., <code class="docutils literal notranslate"><span class="pre">yhat</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code>) and returns per-sample
+losses or their average.</p></li>
+<li><p><strong>derivative3</strong> (<em>Callable</em><em>[</em><em>...</em><em>, </em><a class="reference external" href="https://docs.cupy.dev/en/stable/reference/generated/cupy.ndarray.html#cupy.ndarray" title="(in CuPy v13.5.1)"><em>cupy.ndarray</em></a><em>]</em>) – Derivative of <code class="docutils literal notranslate"><span class="pre">loss</span></code>
+with respect to predictions (same signature as <code class="docutils literal notranslate"><span class="pre">loss</span></code>).</p></li>
+<li><p><strong>learning_rate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – SGD step size.</p></li>
+<li><p><strong>dtype</strong> (<em>cupy.dtype</em><em>, </em><em>optional</em>) – Floating dtype for parameters and data.
+Defaults to <code class="docutils literal notranslate"><span class="pre">cupy.float32</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nillanet.model.NN.X">
+<span class="sig-name descname"><span class="pre">X</span></span><a class="headerlink" href="#nillanet.model.NN.X" title="Link to this definition"></a></dt>
+<dd><p>Training inputs with a prepended bias column,
+shape (n_samples, n_features + 1).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.cupy.dev/en/stable/reference/generated/cupy.ndarray.html#cupy.ndarray" title="(in CuPy v13.5.1)">cupy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nillanet.model.NN.Y">
+<span class="sig-name descname"><span class="pre">Y</span></span><a class="headerlink" href="#nillanet.model.NN.Y" title="Link to this definition"></a></dt>
+<dd><p>Training targets on device.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.cupy.dev/en/stable/reference/generated/cupy.ndarray.html#cupy.ndarray" title="(in CuPy v13.5.1)">cupy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nillanet.model.NN.W">
+<span class="sig-name descname"><span class="pre">W</span></span><a class="headerlink" href="#nillanet.model.NN.W" title="Link to this definition"></a></dt>
+<dd><p>Layer weight matrices; <code class="docutils literal notranslate"><span class="pre">W[i]</span></code> has shape
+(in_features_i, out_features_i).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a>[<a class="reference external" href="https://docs.cupy.dev/en/stable/reference/generated/cupy.ndarray.html#cupy.ndarray" title="(in CuPy v13.5.1)">cupy.ndarray</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nillanet.model.NN.architecture">
+<span class="sig-name descname"><span class="pre">architecture</span></span><a class="headerlink" href="#nillanet.model.NN.architecture" title="Link to this definition"></a></dt>
+<dd><p>Layer sizes as provided.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nillanet.model.NN.learning_rate">
+<span class="sig-name descname"><span class="pre">learning_rate</span></span><a class="headerlink" href="#nillanet.model.NN.learning_rate" title="Link to this definition"></a></dt>
+<dd><p>SGD step size (cast to <code class="docutils literal notranslate"><span class="pre">dtype</span></code>).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.model.NN.batch">
+<span class="sig-name descname"><span class="pre">batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/model.html#NN.batch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.model.NN.batch" title="Link to this definition"></a></dt>
+<dd><p>Run a single forward/backward/update step.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<a class="reference external" href="https://docs.cupy.dev/en/stable/reference/generated/cupy.ndarray.html#cupy.ndarray" title="(in CuPy v13.5.1)"><em>cupy.ndarray</em></a><em> | </em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a>) – Inputs, shape (B, D) or (D,).</p></li>
+<li><p><strong>y</strong> (<a class="reference external" href="https://docs.cupy.dev/en/stable/reference/generated/cupy.ndarray.html#cupy.ndarray" title="(in CuPy v13.5.1)"><em>cupy.ndarray</em></a><em> | </em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a>) – Targets, shape (B, K) or (K,).</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Ensures inputs/targets reside on device and are at least 2D.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.model.NN.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/model.html#NN.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.model.NN.predict" title="Link to this definition"></a></dt>
+<dd><p>Run a forward pass to produce predictions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input</strong> (<a class="reference external" href="https://docs.cupy.dev/en/stable/reference/generated/cupy.ndarray.html#cupy.ndarray" title="(in CuPy v13.5.1)"><em>cupy.ndarray</em></a><em> | </em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a>) – Inputs of shape
+(n_samples, n_features). If NumPy, it will be moved to device.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Model outputs of shape (n_samples, n_outputs).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.cupy.dev/en/stable/reference/generated/cupy.ndarray.html#cupy.ndarray" title="(in CuPy v13.5.1)">cupy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.model.NN.summary">
+<span class="sig-name descname"><span class="pre">summary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/model.html#NN.summary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.model.NN.summary" title="Link to this definition"></a></dt>
+<dd><p>Print layer shapes and total parameter count.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.model.NN.train">
+<span class="sig-name descname"><span class="pre">train</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epochs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/model.html#NN.train"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.model.NN.train" title="Link to this definition"></a></dt>
+<dd><p>Train the model using simple SGD.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>epochs</strong> – Number of SGD steps to run.</p></li>
+<li><p><strong>batch</strong> – One of:
+- <code class="docutils literal notranslate"><span class="pre">1</span></code>: sample a single example per step (pure SGD)
+- <code class="docutils literal notranslate"><span class="pre">0</span></code>: use all samples per step (full batch)
+- <code class="docutils literal notranslate"><span class="pre">&gt;1</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;</span> <span class="pre">len(Y)</span></code>: use that mini-batch size per step</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#SystemExit" title="(in Python v3.13)"><strong>SystemExit</strong></a> – If <code class="docutils literal notranslate"><span class="pre">batch</span></code> is invalid.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-nillanet.activations">
+<dt class="sig sig-object py" id="nillanet.activations.Activations">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nillanet.activations.</span></span><span class="sig-name descname"><span class="pre">Activations</span></span><a class="reference internal" href="../_modules/nillanet/activations.html#Activations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.activations.Activations" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Helper functions for NN class.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.activations.Activations.linear">
+<span class="sig-name descname"><span class="pre">linear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/activations.html#Activations.linear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.activations.Activations.linear" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.activations.Activations.linear_derivative">
+<span class="sig-name descname"><span class="pre">linear_derivative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/activations.html#Activations.linear_derivative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.activations.Activations.linear_derivative" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.activations.Activations.relu">
+<span class="sig-name descname"><span class="pre">relu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/activations.html#Activations.relu"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.activations.Activations.relu" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.activations.Activations.relu_derivative">
+<span class="sig-name descname"><span class="pre">relu_derivative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/activations.html#Activations.relu_derivative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.activations.Activations.relu_derivative" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.activations.Activations.sigmoid">
+<span class="sig-name descname"><span class="pre">sigmoid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/activations.html#Activations.sigmoid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.activations.Activations.sigmoid" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.activations.Activations.sigmoid_derivative">
+<span class="sig-name descname"><span class="pre">sigmoid_derivative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/activations.html#Activations.sigmoid_derivative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.activations.Activations.sigmoid_derivative" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.activations.Activations.softmax_matrix">
+<span class="sig-name descname"><span class="pre">softmax_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yhat</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/activations.html#Activations.softmax_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.activations.Activations.softmax_matrix" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.activations.Activations.softmax_matrix_derivative">
+<span class="sig-name descname"><span class="pre">softmax_matrix_derivative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yhat</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/activations.html#Activations.softmax_matrix_derivative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.activations.Activations.softmax_matrix_derivative" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.activations.Activations.softmax_vector">
+<span class="sig-name descname"><span class="pre">softmax_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yhat</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/activations.html#Activations.softmax_vector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.activations.Activations.softmax_vector" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.activations.Activations.softmax_vector_derivative">
+<span class="sig-name descname"><span class="pre">softmax_vector_derivative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yhat</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/activations.html#Activations.softmax_vector_derivative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.activations.Activations.softmax_vector_derivative" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.activations.Activations.sum_to_one">
+<span class="sig-name descname"><span class="pre">sum_to_one</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yhat</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/activations.html#Activations.sum_to_one"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.activations.Activations.sum_to_one" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.activations.Activations.tanh">
+<span class="sig-name descname"><span class="pre">tanh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/activations.html#Activations.tanh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.activations.Activations.tanh" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.activations.Activations.tanh_derivative">
+<span class="sig-name descname"><span class="pre">tanh_derivative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/activations.html#Activations.tanh_derivative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.activations.Activations.tanh_derivative" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-nillanet.loss">
+<dt class="sig sig-object py" id="nillanet.loss.Loss">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nillanet.loss.</span></span><span class="sig-name descname"><span class="pre">Loss</span></span><a class="reference internal" href="../_modules/nillanet/loss.html#Loss"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.loss.Loss" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Helper functions for NN class.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.loss.Loss.binary_crossentropy">
+<span class="sig-name descname"><span class="pre">binary_crossentropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yhat</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/loss.html#Loss.binary_crossentropy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.loss.Loss.binary_crossentropy" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.loss.Loss.binary_crossentropy_derivative">
+<span class="sig-name descname"><span class="pre">binary_crossentropy_derivative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yhat</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/loss.html#Loss.binary_crossentropy_derivative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.loss.Loss.binary_crossentropy_derivative" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.loss.Loss.categorical_crossentropy">
+<span class="sig-name descname"><span class="pre">categorical_crossentropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yhat</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/loss.html#Loss.categorical_crossentropy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.loss.Loss.categorical_crossentropy" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.loss.Loss.categorical_crossentropy_derivative">
+<span class="sig-name descname"><span class="pre">categorical_crossentropy_derivative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yhat</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/loss.html#Loss.categorical_crossentropy_derivative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.loss.Loss.categorical_crossentropy_derivative" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.loss.Loss.mse">
+<span class="sig-name descname"><span class="pre">mse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yhat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/loss.html#Loss.mse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.loss.Loss.mse" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.loss.Loss.mse_derivative">
+<span class="sig-name descname"><span class="pre">mse_derivative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yhat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/loss.html#Loss.mse_derivative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.loss.Loss.mse_derivative" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.loss.Loss.top1_loss">
+<span class="sig-name descname"><span class="pre">top1_loss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yhat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/loss.html#Loss.top1_loss"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.loss.Loss.top1_loss" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-nillanet.io">
+<dt class="sig sig-object py" id="nillanet.io.IO">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nillanet.io.</span></span><span class="sig-name descname"><span class="pre">IO</span></span><a class="reference internal" href="../_modules/nillanet/io.html#IO"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.io.IO" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Helper functions for NN class.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.io.IO.load">
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/io.html#IO.load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.io.IO.load" title="Link to this definition"></a></dt>
+<dd><p>Read serialized file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> – Path to the model pickle file.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.io.IO.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/io.html#IO.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.io.IO.save" title="Link to this definition"></a></dt>
+<dd><p>Serialize the model to disk using pickle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> – Path to the output pickle file.</p>
+</dd>
+</dl>
+<p>CuPy arrays are picklable</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tests.html" class="btn btn-neutral float-right" title="tests module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, James Smith.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
