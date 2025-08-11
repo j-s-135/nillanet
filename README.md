@@ -3,6 +3,12 @@
 dependencies
 - Cupy must be pre-installed on your system.
 
+installation
+
+`
+pip3 install nillanet
+`
+
 read documentation at
 - [github.io](https://j-s-135.github.io/nillanet)
 

@@ -1,4 +1,5 @@
 import cupy as cp
+import pickle
 
 class IO(object):
   """Helper functions for NN class.
