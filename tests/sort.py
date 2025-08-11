@@ -1,7 +1,7 @@
 from nillanet.model import NN
 from nillanet.activations import Activations
 from nillanet.loss import Loss
-from tests.distributions import Distributions
+from nillanet.distributions import Distributions
 
 d = Distributions()
 x,y = d.sort(10,5)
