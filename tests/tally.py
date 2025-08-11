@@ -28,7 +28,7 @@ architecture = [2,4,1]
 learning_rate = 0.1
 
 model = NN(input,output,architecture,activation,derivative1,classifier,derivative2,loss,derivative3,learning_rate)
-model.train(10000,1)
+model.train(1000,1)
 prediction = model.predict(x)
 
 print("prediction")

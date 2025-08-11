@@ -1,7 +1,4 @@
-try:
-  import cupy as cp
-except ImportError:
-  import numpy as cp
+import cupy as cp
 import numpy as np
 import os
 import math

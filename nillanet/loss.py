@@ -1,3 +1,5 @@
+import cupy as cp
+
 class Loss(object):
   """Helper functions for NN class.
   """

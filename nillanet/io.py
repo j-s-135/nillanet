@@ -1,3 +1,5 @@
+import cupy as cp
+
 class IO(object):
   """Helper functions for NN class.
   """

@@ -1,3 +1,5 @@
+import cupy as cp
+
 class Activations(object):
   """Helper functions for NN class.
   """
