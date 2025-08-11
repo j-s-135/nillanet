@@ -80,7 +80,7 @@ class NN(object):
       self.W.append(w)
       features = nodes
 
-  def train(self, epochs=1, batch=1):
+  def train(self, epochs=1, batch=0):
     """Train the model using simple SGD.
 
         Args:

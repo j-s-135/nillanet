@@ -19,6 +19,7 @@ class Distributions(object):
 
   def linear_distribution(self,depth):
     """linear regression
+
     predict y from x for x-values on a random line with slope and intercept
     """
     # random input values
@@ -31,7 +32,9 @@ class Distributions(object):
     return x,y
   def logical_distribution(self,depth,mode):
     """boolean logic
+
     predict binary result for two binary inputs [0,1]
+
     choice of four boolean operations: and, or, xor, xnor
     """
     x = cp.round(cp.random.random((depth,2))).astype(cp.float64)
@@ -49,7 +52,9 @@ class Distributions(object):
     return x,y
   def arithmetic_distribution(self,depth,mode):
     """arithmetic operations
+
     predict arithmetic result for two input values
+
     select from five arithmetic operations: add, subtract, multiply, divide, zero (always predict 0)
     """
     x = cp.random.random((depth,2)).astype(cp.float64)
@@ -69,11 +74,17 @@ class Distributions(object):
     return x,y
   def summation(self,rows,cols,mode="summation"):
     """sum numbers in each row
+
     generates a matrix of zeros and ones
+
     mode=summation or one_hot
+
     for one hot mode, pass in one hot vectors and sum the number of ones in each row
+
     must declare NN model with particular number of output columns
+
     if mode=summation then declare NN model with one output column
+
     if mode=onehot then declare NN model with cols+1 output columns (for values from zero to # cols)
     """
     x = cp.array([random.randrange(2) for i in range(rows * cols)]).reshape(rows,cols)
@@ -90,7 +101,9 @@ class Distributions(object):
     return x,y
   def sort(self,rows,cols):
     """numerical sort
+
     generates a matrix of any size
+
     sorts each row into order from smallest to largest
     """
     x = cp.random.random((rows,cols))
