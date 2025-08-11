@@ -4,7 +4,7 @@ from nillanet.loss import Loss
 from nillanet.distributions import Distributions
 
 d = Distributions()
-x,y,z = d.linear_distribution(10)
+x,y = d.linear_distribution(10)
 print(x.shape)
 print(y.shape)
 print(x)

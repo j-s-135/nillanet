@@ -5,8 +5,8 @@ from nillanet.distributions import Distributions
 
 # summation
 
-distribution = Distributions()
-x,y = distribution.tally(10,4,"summation")
+d = Distributions()
+x,y = d.summation(10,4,"summation")
 print(x.shape)
 print(y.shape)
 print(x)
@@ -38,7 +38,7 @@ print(y)
 
 # one hots
 
-x,y = d.tally(10,3,mode="one_hot")
+x,y = d.summation(10,3,mode="one_hot")
 print(x.shape)
 print(y.shape)
 print(x)
@@ -58,7 +58,7 @@ architecture = [2,4,4]
 learning_rate = 0.1
 
 model = NN(input,output,architecture,activation,derivative1,classifier,derivative2,loss,derivative3,learning_rate)
-model.train(10000,0)
+model.train(1000,0)
 prediction = model.predict(x)
 
 print("prediction")

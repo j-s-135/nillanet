@@ -17,18 +17,25 @@ class Distributions(object):
   def __init__(self):
     pass
 
-  def linear_distribution(self,height):
+  def linear_distribution(self,depth):
+    """linear regression
+    predict y from x for x-values on a random line with slope and intercept
+    """
     # random input values
-    x = cp.random.random((height,1)).astype(cp.float64)
+    x = cp.random.random((depth,1)).astype(cp.float64)
     # target weight, bias
     z = cp.random.random((2,1)).astype(cp.float64)
     # y = wx + b
     y = [ z[0] * x[j] + z[1] for j in range(0,len(x)) ]
     y = cp.array(y).astype(cp.float64)
-    return x,y,z
-  def logical_distribution(self,height,mode):
-    x = cp.round(cp.random.random((height,2))).astype(cp.float64)
-    y = cp.zeros([height,1]).astype(cp.float64).flatten()
+    return x,y
+  def logical_distribution(self,depth,mode):
+    """boolean logic
+    predict binary result for two binary inputs [0,1]
+    choice of four boolean operations: and, or, xor, xnor
+    """
+    x = cp.round(cp.random.random((depth,2))).astype(cp.float64)
+    y = cp.zeros([depth,1]).astype(cp.float64).flatten()
     if mode=="and":
       y = cp.array([x[j,0] * x[j,1] for j in range(0,len(x))])
     elif mode=="or":
@@ -40,9 +47,13 @@ class Distributions(object):
     else:
       return None,None
     return x,y
-  def arithmetic_distribution(self,height,mode):
-    x = cp.random.random((height,2)).astype(cp.float64)
-    y = cp.zeros([height,1]).astype(cp.float64)
+  def arithmetic_distribution(self,depth,mode):
+    """arithmetic operations
+    predict arithmetic result for two input values
+    select from five arithmetic operations: add, subtract, multiply, divide, zero (always predict 0)
+    """
+    x = cp.random.random((depth,2)).astype(cp.float64)
+    y = cp.zeros([depth,1]).astype(cp.float64)
     if mode=="add":
       y = cp.array([x[j,0] + x[j,1] for j in range(0,len(x))]) # weights = 1
     elif mode=="subtract":
@@ -56,12 +67,15 @@ class Distributions(object):
     else:
       return None,None
     return x,y
-  def tally(self,rows,cols,mode="summation"):
-    # mode=summation or one_hot
-    # for one hot mode, pass in one hot vectors and sum the number of ones in each row
-    # must declare NN model with particular number of output columns
-    # if mode=summation then declare NN model with one output column
-    # if mode=onehot then declare NN model with cols+1 output columns (for values from zero to # cols)
+  def summation(self,rows,cols,mode="summation"):
+    """sum numbers in each row
+    generates a matrix of zeros and ones
+    mode=summation or one_hot
+    for one hot mode, pass in one hot vectors and sum the number of ones in each row
+    must declare NN model with particular number of output columns
+    if mode=summation then declare NN model with one output column
+    if mode=onehot then declare NN model with cols+1 output columns (for values from zero to # cols)
+    """
     x = cp.array([random.randrange(2) for i in range(rows * cols)]).reshape(rows,cols)
     if mode=="summation":
       # y = a scalar for the number of ones in each x vector
@@ -75,6 +89,10 @@ class Distributions(object):
       sys.exit("mode must be summation or one_hot")
     return x,y
   def sort(self,rows,cols):
+    """numerical sort
+    generates a matrix of any size
+    sorts each row into order from smallest to largest
+    """
     x = cp.random.random((rows,cols))
     y = cp.array([sorted(x[i]) for i in range(0,len(x))])
     return x,y
