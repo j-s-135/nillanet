@@ -19,7 +19,6 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="tests module" href="tests.html" />
     <link rel="prev" title="documentation" href="../index.html" /> 
 </head>
 
@@ -88,9 +87,16 @@
 <li class="toctree-l3"><a class="reference internal" href="#nillanet.io.IO.save"><code class="docutils literal notranslate"><span class="pre">IO.save()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#nillanet.distributions.Distributions"><code class="docutils literal notranslate"><span class="pre">Distributions</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.distributions.Distributions.arithmetic_distribution"><code class="docutils literal notranslate"><span class="pre">Distributions.arithmetic_distribution()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.distributions.Distributions.linear_distribution"><code class="docutils literal notranslate"><span class="pre">Distributions.linear_distribution()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.distributions.Distributions.logical_distribution"><code class="docutils literal notranslate"><span class="pre">Distributions.logical_distribution()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.distributions.Distributions.sort"><code class="docutils literal notranslate"><span class="pre">Distributions.sort()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.distributions.Distributions.tally"><code class="docutils literal notranslate"><span class="pre">Distributions.tally()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="tests.html">tests module</a></li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -417,6 +423,38 @@ shape (n_samples, n_features + 1).</p>
 
 </dd></dl>
 
+<dl class="py class" id="module-nillanet.distributions">
+<dt class="sig sig-object py" id="nillanet.distributions.Distributions">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nillanet.distributions.</span></span><span class="sig-name descname"><span class="pre">Distributions</span></span><a class="reference internal" href="../_modules/nillanet/distributions.html#Distributions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.distributions.Distributions" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Random training distributions for test modules.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.distributions.Distributions.arithmetic_distribution">
+<span class="sig-name descname"><span class="pre">arithmetic_distribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/distributions.html#Distributions.arithmetic_distribution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.distributions.Distributions.arithmetic_distribution" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.distributions.Distributions.linear_distribution">
+<span class="sig-name descname"><span class="pre">linear_distribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">height</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/distributions.html#Distributions.linear_distribution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.distributions.Distributions.linear_distribution" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.distributions.Distributions.logical_distribution">
+<span class="sig-name descname"><span class="pre">logical_distribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/distributions.html#Distributions.logical_distribution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.distributions.Distributions.logical_distribution" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.distributions.Distributions.sort">
+<span class="sig-name descname"><span class="pre">sort</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rows</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/distributions.html#Distributions.sort"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.distributions.Distributions.sort" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.distributions.Distributions.tally">
+<span class="sig-name descname"><span class="pre">tally</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rows</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'summation'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/distributions.html#Distributions.tally"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.distributions.Distributions.tally" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 
 
@@ -424,7 +462,6 @@ shape (n_samples, n_features + 1).</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../index.html" class="btn btn-neutral float-left" title="documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="tests.html" class="btn btn-neutral float-right" title="tests module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

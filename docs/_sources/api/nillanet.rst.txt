@@ -17,4 +17,7 @@ nillanet module
    :members:
    :undoc-members:
    :show-inheritance:
-
+.. automodule:: nillanet.distributions
+   :members:
+   :undoc-members:
+   :show-inheritance:
