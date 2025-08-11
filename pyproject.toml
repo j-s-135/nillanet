@@ -1,6 +1,6 @@
 [project]
 name = "nillanet"
-version = "0.1.6"
+version = "0.1.7"
 description = "linear neural net"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -34,7 +34,7 @@ docs = [
 
 [project.urls]
 Homepage = "https://github.com/j-s-135/nillanet"
-Documentation = "https://nillanet.readthedocs.io"
+Documentation = "https://j-s-135.github.io/nillanet"
 Source = "https://github.com/j-s-135/nillanet"
 Issues = "https://github.com/j-s-135/nillanet/issues"
 

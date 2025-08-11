@@ -92,21 +92,28 @@
 
 <div class="viewcode-block" id="Distributions.linear_distribution">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.distributions.Distributions.linear_distribution">[docs]</a>
-  <span class="k">def</span><span class="w"> </span><span class="nf">linear_distribution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">height</span><span class="p">):</span>
+  <span class="k">def</span><span class="w"> </span><span class="nf">linear_distribution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">depth</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;linear regression</span>
+<span class="sd">    predict y from x for x-values on a random line with slope and intercept</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># random input values</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="n">height</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="n">depth</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
     <span class="c1"># target weight, bias</span>
     <span class="n">z</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
     <span class="c1"># y = wx + b</span>
     <span class="n">y</span> <span class="o">=</span> <span class="p">[</span> <span class="n">z</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">z</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="p">]</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span></div>
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span></div>
 
 <div class="viewcode-block" id="Distributions.logical_distribution">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.distributions.Distributions.logical_distribution">[docs]</a>
-  <span class="k">def</span><span class="w"> </span><span class="nf">logical_distribution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">height</span><span class="p">,</span><span class="n">mode</span><span class="p">):</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="n">height</span><span class="p">,</span><span class="mi">2</span><span class="p">)))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">height</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+  <span class="k">def</span><span class="w"> </span><span class="nf">logical_distribution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">depth</span><span class="p">,</span><span class="n">mode</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;boolean logic</span>
+<span class="sd">    predict binary result for two binary inputs [0,1]</span>
+<span class="sd">    choice of four boolean operations: and, or, xor, xnor</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="n">depth</span><span class="p">,</span><span class="mi">2</span><span class="p">)))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">depth</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">mode</span><span class="o">==</span><span class="s2">&quot;and&quot;</span><span class="p">:</span>
       <span class="n">y</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))])</span>
     <span class="k">elif</span> <span class="n">mode</span><span class="o">==</span><span class="s2">&quot;or&quot;</span><span class="p">:</span>
@@ -121,9 +128,13 @@
 
 <div class="viewcode-block" id="Distributions.arithmetic_distribution">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.distributions.Distributions.arithmetic_distribution">[docs]</a>
-  <span class="k">def</span><span class="w"> </span><span class="nf">arithmetic_distribution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">height</span><span class="p">,</span><span class="n">mode</span><span class="p">):</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="n">height</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">height</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+  <span class="k">def</span><span class="w"> </span><span class="nf">arithmetic_distribution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">depth</span><span class="p">,</span><span class="n">mode</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;arithmetic operations</span>
+<span class="sd">    predict arithmetic result for two input values</span>
+<span class="sd">    select from five arithmetic operations: add, subtract, multiply, divide, zero (always predict 0)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="n">depth</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">depth</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">mode</span><span class="o">==</span><span class="s2">&quot;add&quot;</span><span class="p">:</span>
       <span class="n">y</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))])</span> <span class="c1"># weights = 1</span>
     <span class="k">elif</span> <span class="n">mode</span><span class="o">==</span><span class="s2">&quot;subtract&quot;</span><span class="p">:</span>
@@ -138,14 +149,17 @@
       <span class="k">return</span> <span class="kc">None</span><span class="p">,</span><span class="kc">None</span>
     <span class="k">return</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span></div>
 
-<div class="viewcode-block" id="Distributions.tally">
-<a class="viewcode-back" href="../../api/nillanet.html#nillanet.distributions.Distributions.tally">[docs]</a>
-  <span class="k">def</span><span class="w"> </span><span class="nf">tally</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">rows</span><span class="p">,</span><span class="n">cols</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;summation&quot;</span><span class="p">):</span>
-    <span class="c1"># mode=summation or one_hot</span>
-    <span class="c1"># for one hot mode, pass in one hot vectors and sum the number of ones in each row</span>
-    <span class="c1"># must declare NN model with particular number of output columns</span>
-    <span class="c1"># if mode=summation then declare NN model with one output column</span>
-    <span class="c1"># if mode=onehot then declare NN model with cols+1 output columns (for values from zero to # cols)</span>
+<div class="viewcode-block" id="Distributions.summation">
+<a class="viewcode-back" href="../../api/nillanet.html#nillanet.distributions.Distributions.summation">[docs]</a>
+  <span class="k">def</span><span class="w"> </span><span class="nf">summation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">rows</span><span class="p">,</span><span class="n">cols</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;summation&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;sum numbers in each row</span>
+<span class="sd">    generates a matrix of zeros and ones</span>
+<span class="sd">    mode=summation or one_hot</span>
+<span class="sd">    for one hot mode, pass in one hot vectors and sum the number of ones in each row</span>
+<span class="sd">    must declare NN model with particular number of output columns</span>
+<span class="sd">    if mode=summation then declare NN model with one output column</span>
+<span class="sd">    if mode=onehot then declare NN model with cols+1 output columns (for values from zero to # cols)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rows</span> <span class="o">*</span> <span class="n">cols</span><span class="p">)])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span><span class="n">cols</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">mode</span><span class="o">==</span><span class="s2">&quot;summation&quot;</span><span class="p">:</span>
       <span class="c1"># y = a scalar for the number of ones in each x vector</span>
@@ -162,6 +176,10 @@
 <div class="viewcode-block" id="Distributions.sort">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.distributions.Distributions.sort">[docs]</a>
   <span class="k">def</span><span class="w"> </span><span class="nf">sort</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">rows</span><span class="p">,</span><span class="n">cols</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;numerical sort</span>
+<span class="sd">    generates a matrix of any size</span>
+<span class="sd">    sorts each row into order from smallest to largest</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="n">rows</span><span class="p">,</span><span class="n">cols</span><span class="p">))</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">sorted</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))])</span>
     <span class="k">return</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span></div>

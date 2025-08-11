@@ -92,7 +92,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#nillanet.distributions.Distributions.linear_distribution"><code class="docutils literal notranslate"><span class="pre">Distributions.linear_distribution()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nillanet.distributions.Distributions.logical_distribution"><code class="docutils literal notranslate"><span class="pre">Distributions.logical_distribution()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nillanet.distributions.Distributions.sort"><code class="docutils literal notranslate"><span class="pre">Distributions.sort()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nillanet.distributions.Distributions.tally"><code class="docutils literal notranslate"><span class="pre">Distributions.tally()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.distributions.Distributions.summation"><code class="docutils literal notranslate"><span class="pre">Distributions.summation()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -430,28 +430,46 @@ shape (n_samples, n_features + 1).</p>
 <p>Random training distributions for test modules.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nillanet.distributions.Distributions.arithmetic_distribution">
-<span class="sig-name descname"><span class="pre">arithmetic_distribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/distributions.html#Distributions.arithmetic_distribution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.distributions.Distributions.arithmetic_distribution" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">arithmetic_distribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">depth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/distributions.html#Distributions.arithmetic_distribution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.distributions.Distributions.arithmetic_distribution" title="Link to this definition"></a></dt>
+<dd><p>arithmetic operations
+predict arithmetic result for two input values
+select from five arithmetic operations: add, subtract, multiply, divide, zero (always predict 0)</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nillanet.distributions.Distributions.linear_distribution">
-<span class="sig-name descname"><span class="pre">linear_distribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">height</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/distributions.html#Distributions.linear_distribution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.distributions.Distributions.linear_distribution" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">linear_distribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">depth</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/distributions.html#Distributions.linear_distribution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.distributions.Distributions.linear_distribution" title="Link to this definition"></a></dt>
+<dd><p>linear regression
+predict y from x for x-values on a random line with slope and intercept</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nillanet.distributions.Distributions.logical_distribution">
-<span class="sig-name descname"><span class="pre">logical_distribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/distributions.html#Distributions.logical_distribution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.distributions.Distributions.logical_distribution" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">logical_distribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">depth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/distributions.html#Distributions.logical_distribution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.distributions.Distributions.logical_distribution" title="Link to this definition"></a></dt>
+<dd><p>boolean logic
+predict binary result for two binary inputs [0,1]
+choice of four boolean operations: and, or, xor, xnor</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nillanet.distributions.Distributions.sort">
 <span class="sig-name descname"><span class="pre">sort</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rows</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/distributions.html#Distributions.sort"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.distributions.Distributions.sort" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>numerical sort
+generates a matrix of any size
+sorts each row into order from smallest to largest</p>
+</dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="nillanet.distributions.Distributions.tally">
-<span class="sig-name descname"><span class="pre">tally</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rows</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'summation'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/distributions.html#Distributions.tally"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.distributions.Distributions.tally" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="nillanet.distributions.Distributions.summation">
+<span class="sig-name descname"><span class="pre">summation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rows</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'summation'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/distributions.html#Distributions.summation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.distributions.Distributions.summation" title="Link to this definition"></a></dt>
+<dd><p>sum numbers in each row
+generates a matrix of zeros and ones
+mode=summation or one_hot
+for one hot mode, pass in one hot vectors and sum the number of ones in each row
+must declare NN model with particular number of output columns
+if mode=summation then declare NN model with one output column
+if mode=onehot then declare NN model with cols+1 output columns (for values from zero to # cols)</p>
+</dd></dl>
 
 </dd></dl>
 
