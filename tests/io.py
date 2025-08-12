@@ -3,7 +3,6 @@ from nillanet.model import NN
 from nillanet.activations import Activations
 from nillanet.loss import Loss
 from nillanet.distributions import Distributions
-import pickle
 
 d = Distributions()
 x,y = d.linear_distribution(10)

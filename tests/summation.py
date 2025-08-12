@@ -49,8 +49,8 @@ derivative1 = a.sigmoid_derivative
 classifier = a.sigmoid
 derivative2 = a.sigmoid_derivative
 
-loss = l.mse
-derivative3 = l.mse_derivative
+loss = l.binary_crossentropy
+derivative3 = l.binary_crossentropy_derivative
 
 input = x
 output = y

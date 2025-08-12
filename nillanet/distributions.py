@@ -11,16 +11,20 @@ cp.random.seed()
 cp.set_printoptions(precision=2,floatmode='fixed',suppress=True)
 
 class Distributions(object):
-  """Random training distributions for test modules.
-  """
+  """Random training distributions for test modules."""
 
   def __init__(self):
     pass
 
-  def linear_distribution(self,depth):
-    """linear regression
+  def linear_distribution(self, depth):
+    """linear regression that predicts y from x for x-values on a random line with slope and intercept
 
-    predict y from x for x-values on a random line with slope and intercept
+        Args:
+          depth: int
+              The number of x-values to generate.
+
+        Returns:
+          tuple of (generated vector of x-values, vector of expected y-values)
     """
     # random input values
     x = cp.random.random((depth,1)).astype(cp.float64)
@@ -30,12 +34,18 @@ class Distributions(object):
     y = [ z[0] * x[j] + z[1] for j in range(0,len(x)) ]
     y = cp.array(y).astype(cp.float64)
     return x,y
-  def logical_distribution(self,depth,mode):
+
+  def logical_distribution(self, depth, mode):
     """boolean logic
 
-    predict binary result for two binary inputs [0,1]
+        Args:
+          depth: int
+              The number of rows for the generated two-column binary matrix.
+          mode: str
+              Accepts "and", "or", "xor", or "xnor".
 
-    choice of four boolean operations: and, or, xor, xnor
+        Returns:
+          tuple of (generated binary matrix, expected output)
     """
     x = cp.round(cp.random.random((depth,2))).astype(cp.float64)
     y = cp.zeros([depth,1]).astype(cp.float64).flatten()
@@ -50,12 +60,22 @@ class Distributions(object):
     else:
       return None,None
     return x,y
-  def arithmetic_distribution(self,depth,mode):
-    """arithmetic operations
 
-    predict arithmetic result for two input values
+  def arithmetic_distribution(self, depth, mode):
+    """predict arithmetic result from distributions of two input values
 
-    select from five arithmetic operations: add, subtract, multiply, divide, zero (always predict 0)
+        Args:
+          depth: int
+              The number of rows for the generated matrix of floating point numbers.
+          mode: str
+              The mode of operation. Accepts either "add", "subtract", "multiply", "divide", or "zero" (always predict 0).
+
+        Returns:
+          tuple of (generated matrix, expected output)
+
+        Raises:
+          SystemExit
+              If the provided `mode` is not "summation" or "one_hot".
     """
     x = cp.random.random((depth,2)).astype(cp.float64)
     y = cp.zeros([depth,1]).astype(cp.float64)
@@ -72,20 +92,26 @@ class Distributions(object):
     else:
       return None,None
     return x,y
-  def summation(self,rows,cols,mode="summation"):
-    """sum numbers in each row
 
-    generates a matrix of zeros and ones
+  def summation(self, rows, cols, mode="one_hot"):
+    """distributions of binary vectors for testing binary cross entropy (one-hot mode only)
 
-    mode=summation or one_hot
+        Args:
+          rows: int
+              The number of rows for the generated binary matrix.
+          cols: int
+              The number of columns for the generated binary matrix.
+          mode: str
+              The mode of operation. Accepts either "summation" or "one_hot".
+              - "summation": Produces a scalar count of the number of ones in each x vector.
+              - "one_hot": Produces a one-hot encoded representation of the count of ones in each x vector.
+              Defaults to "one_hot".
 
-    for one hot mode, pass in one hot vectors and sum the number of ones in each row
+        Returns:
+          tuple of (generated binary matrix, expected output)
 
-    must declare NN model with particular number of output columns
-
-    if mode=summation then declare NN model with one output column
-
-    if mode=onehot then declare NN model with cols+1 output columns (for values from zero to # cols)
+        Raises:
+          SystemExit if the provided `mode` is not "summation" or "one_hot".
     """
     x = cp.array([random.randrange(2) for i in range(rows * cols)]).reshape(rows,cols)
     if mode=="summation":
@@ -99,12 +125,18 @@ class Distributions(object):
     else:
       sys.exit("mode must be summation or one_hot")
     return x,y
-  def sort(self,rows,cols):
+
+  def sort(self, rows, cols):
     """numerical sort
 
-    generates a matrix of any size
+        Args:
+          rows: int
+            the number of rows for the generated matrix
+          cols: int
+            the number of columns for the generated matrix
 
-    sorts each row into order from smallest to largest
+        Returns:
+          tuple of (generated matrix, sorted matrix)
     """
     x = cp.random.random((rows,cols))
     y = cp.array([sorted(x[i]) for i in range(0,len(x))])

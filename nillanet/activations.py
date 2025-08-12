@@ -1,7 +1,8 @@
 import cupy as cp
+import math
 
 class Activations(object):
-  """Helper functions for NN class.
+  """Activation functions for NN class.
   """
 
   def __init__(self):
@@ -37,74 +38,9 @@ class Activations(object):
     else:
       return 1 if x > 0 else 0
 
-  def softmax_matrix(self,yhat):
-    if not isinstance(yhat,cp.ndarray):
-      sys.exit("error - only cp arrays allowed")
-    y = cp.copy(yhat)
-    minimum = cp.min(y)
-    y += abs(minimum)
-    maximum = cp.max(y)
-    if maximum > 0:
-      y /= maximum
-    else:
-      print("warning - zero matrix")
-    results = []
-    for row in y:
-      summation = cp.sum([math.exp(x) for x in row])
-      result = [math.exp(x) / summation for x in row]
-      result = cp.array(result)
-      results.append(result)
-    results = cp.array(results)
-    return results
-
-  def softmax_matrix_derivative(self,yhat):
-    gradient = cp.zeros(yhat.shape)
-    for row in range(0,yhat.shape[0]):
-      for i in range(0,len(yhat[row])):
-        for j in range(0,len(yhat[row])):
-          if i == j:
-            gradient[row,i] = yhat[row,i] * (1-yhat[row,i])
-          else:
-            gradient[row,i] = -yhat[row,i]*yhat[row,j]
-    return gradient
-
-  def softmax_vector(self,yhat):
-    y = None
-    if isinstance(yhat,cp.ndarray):
-      y = cp.copy(yhat)
-      y = cp.array(list(y.flatten()))
-    elif isinstance(yhat,list):
-      y = cp.array(y)
-    minimum = cp.min(y)
-    y += abs(minimum)
-    maximum = cp.max(y)
-    if maximum > 0:
-      y /= maximum
-      summation = cp.sum([math.exp(x) for x in y])
-      result = [math.exp(x) / summation for x in y]
-      result = cp.array(result)
-    else:
-      result = cp.zeros(yhat.shape)
-    return result
-
-  def softmax_vector_derivative(self,yhat):
-    gradient = []
-    for i in range(0,len(yhat)):
-      for j in range(0,len(yhat)):
-        if i == j:
-          gradient[i] = yhat[i] * (1-yhat[i])
-        else:
-          gradient[i] = -yhat[i]*yhat[j]
-    return cp.array(gradient)
-
-  def sum_to_one(self,yhat):
-    y = cp.copy(yhat)
-    y = cp.array(y)
-    minimum = min(y)
-    y += abs(minimum)
-    maximum = max(y)
-    y /= maximum
-    summation = cp.sum(y)
-    result = y / summation
-    return result
-
+  def softmax(self,x):
+    x = cp.exp(x)
+    sums = cp.sum(x, axis=1)
+    sums = sums.reshape(sums.shape[0],1)
+    x /= sums
+    return x
