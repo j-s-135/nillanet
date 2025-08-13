@@ -74,8 +74,7 @@
 <div class="viewcode-block" id="Loss">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.loss.Loss">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Loss</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<span class="w">  </span><span class="sd">&quot;&quot;&quot;Helper functions for NN class.</span>
-<span class="sd">  &quot;&quot;&quot;</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;Loss functions for NN class&quot;&quot;&quot;</span>
 
   <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">pass</span>
@@ -94,13 +93,19 @@
     <span class="k">return</span> <span class="n">yhat</span> <span class="o">-</span> <span class="n">cp</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">yhat</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span></div>
 
 
-  <span class="c1"># def mse(y,yhat):</span>
-  <span class="c1">#   return cp.mean((y - yhat)**2)</span>
+<div class="viewcode-block" id="Loss.mse_alt">
+<a class="viewcode-back" href="../../api/nillanet.html#nillanet.loss.Loss.mse_alt">[docs]</a>
+  <span class="k">def</span><span class="w"> </span><span class="nf">mse_alt</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">yhat</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">cp</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">yhat</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span></div>
 
-  <span class="c1"># def mse_derivative(y,yhat):</span>
-  <span class="c1">#   if y.shape == yhat.shape:</span>
-  <span class="c1">#     return y - yhat</span>
-  <span class="c1">#   return cp.reshape(y,yhat.shape) - yhat</span>
+
+<div class="viewcode-block" id="Loss.mse_alt_derivative">
+<a class="viewcode-back" href="../../api/nillanet.html#nillanet.loss.Loss.mse_alt_derivative">[docs]</a>
+  <span class="k">def</span><span class="w"> </span><span class="nf">mse_alt_derivative</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">yhat</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">yhat</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>
+      <span class="k">return</span> <span class="n">y</span> <span class="o">-</span> <span class="n">yhat</span>
+    <span class="k">return</span> <span class="n">cp</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">yhat</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">-</span> <span class="n">yhat</span></div>
+
 
 <div class="viewcode-block" id="Loss.binary_crossentropy">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.loss.Loss.binary_crossentropy">[docs]</a>
@@ -113,27 +118,7 @@
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.loss.Loss.binary_crossentropy_derivative">[docs]</a>
   <span class="k">def</span><span class="w"> </span><span class="nf">binary_crossentropy_derivative</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">yhat</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">yhat</span> <span class="o">-</span> <span class="n">y</span></div>
-
-
-<div class="viewcode-block" id="Loss.categorical_crossentropy">
-<a class="viewcode-back" href="../../api/nillanet.html#nillanet.loss.Loss.categorical_crossentropy">[docs]</a>
-  <span class="k">def</span><span class="w"> </span><span class="nf">categorical_crossentropy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">yhat</span><span class="p">):</span>
-    <span class="c1"># loss = -log(softmax result) where result = correct result only</span>
-    <span class="k">pass</span></div>
-
-
-<div class="viewcode-block" id="Loss.categorical_crossentropy_derivative">
-<a class="viewcode-back" href="../../api/nillanet.html#nillanet.loss.Loss.categorical_crossentropy_derivative">[docs]</a>
-  <span class="k">def</span><span class="w"> </span><span class="nf">categorical_crossentropy_derivative</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">yhat</span><span class="p">):</span>
-    <span class="k">pass</span></div>
-
-
-<div class="viewcode-block" id="Loss.top1_loss">
-<a class="viewcode-back" href="../../api/nillanet.html#nillanet.loss.Loss.top1_loss">[docs]</a>
-  <span class="k">def</span><span class="w"> </span><span class="nf">top1_loss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">yhat</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">yhat</span><span class="p">[</span><span class="n">cp</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">y</span><span class="p">)]</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="n">cp</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">y</span><span class="p">)]</span></div>
 </div>
-
 
 </pre></div>
 

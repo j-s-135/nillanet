@@ -84,18 +84,22 @@
 <div class="viewcode-block" id="Distributions">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.distributions.Distributions">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Distributions</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<span class="w">  </span><span class="sd">&quot;&quot;&quot;Random training distributions for test modules.</span>
-<span class="sd">  &quot;&quot;&quot;</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;Random training distributions for test modules.&quot;&quot;&quot;</span>
 
   <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">pass</span>
 
 <div class="viewcode-block" id="Distributions.linear_distribution">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.distributions.Distributions.linear_distribution">[docs]</a>
-  <span class="k">def</span><span class="w"> </span><span class="nf">linear_distribution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">depth</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;linear regression</span>
+  <span class="k">def</span><span class="w"> </span><span class="nf">linear_distribution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">depth</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;linear regression that predicts y from x for x-values on a random line with slope and intercept</span>
 
-<span class="sd">    predict y from x for x-values on a random line with slope and intercept</span>
+<span class="sd">        Args:</span>
+<span class="sd">          depth: int</span>
+<span class="sd">              The number of x-values to generate.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">          tuple of (generated vector of x-values, vector of expected y-values)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># random input values</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="n">depth</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
@@ -106,14 +110,20 @@
     <span class="n">y</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span></div>
 
+
 <div class="viewcode-block" id="Distributions.logical_distribution">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.distributions.Distributions.logical_distribution">[docs]</a>
-  <span class="k">def</span><span class="w"> </span><span class="nf">logical_distribution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">depth</span><span class="p">,</span><span class="n">mode</span><span class="p">):</span>
+  <span class="k">def</span><span class="w"> </span><span class="nf">logical_distribution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">depth</span><span class="p">,</span> <span class="n">mode</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;boolean logic</span>
 
-<span class="sd">    predict binary result for two binary inputs [0,1]</span>
+<span class="sd">        Args:</span>
+<span class="sd">          depth: int</span>
+<span class="sd">              The number of rows for the generated two-column binary matrix.</span>
+<span class="sd">          mode: str</span>
+<span class="sd">              Accepts &quot;and&quot;, &quot;or&quot;, &quot;xor&quot;, or &quot;xnor&quot;.</span>
 
-<span class="sd">    choice of four boolean operations: and, or, xor, xnor</span>
+<span class="sd">        Returns:</span>
+<span class="sd">          tuple of (generated binary matrix, expected output)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="n">depth</span><span class="p">,</span><span class="mi">2</span><span class="p">)))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">depth</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
@@ -129,14 +139,24 @@
       <span class="k">return</span> <span class="kc">None</span><span class="p">,</span><span class="kc">None</span>
     <span class="k">return</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span></div>
 
+
 <div class="viewcode-block" id="Distributions.arithmetic_distribution">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.distributions.Distributions.arithmetic_distribution">[docs]</a>
-  <span class="k">def</span><span class="w"> </span><span class="nf">arithmetic_distribution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">depth</span><span class="p">,</span><span class="n">mode</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;arithmetic operations</span>
+  <span class="k">def</span><span class="w"> </span><span class="nf">arithmetic_distribution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">depth</span><span class="p">,</span> <span class="n">mode</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;predict arithmetic result from distributions of two input values</span>
 
-<span class="sd">    predict arithmetic result for two input values</span>
+<span class="sd">        Args:</span>
+<span class="sd">          depth: int</span>
+<span class="sd">              The number of rows for the generated matrix of floating point numbers.</span>
+<span class="sd">          mode: str</span>
+<span class="sd">              The mode of operation. Accepts either &quot;add&quot;, &quot;subtract&quot;, &quot;multiply&quot;, &quot;divide&quot;, or &quot;zero&quot; (always predict 0).</span>
 
-<span class="sd">    select from five arithmetic operations: add, subtract, multiply, divide, zero (always predict 0)</span>
+<span class="sd">        Returns:</span>
+<span class="sd">          tuple of (generated matrix, expected output)</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">          SystemExit</span>
+<span class="sd">              If the provided `mode` is not &quot;summation&quot; or &quot;one_hot&quot;.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="n">depth</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">depth</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
@@ -154,22 +174,28 @@
       <span class="k">return</span> <span class="kc">None</span><span class="p">,</span><span class="kc">None</span>
     <span class="k">return</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span></div>
 
+
 <div class="viewcode-block" id="Distributions.summation">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.distributions.Distributions.summation">[docs]</a>
-  <span class="k">def</span><span class="w"> </span><span class="nf">summation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">rows</span><span class="p">,</span><span class="n">cols</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;summation&quot;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;sum numbers in each row</span>
+  <span class="k">def</span><span class="w"> </span><span class="nf">summation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;one_hot&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;distributions of binary vectors for testing binary cross entropy (one-hot mode only)</span>
 
-<span class="sd">    generates a matrix of zeros and ones</span>
+<span class="sd">        Args:</span>
+<span class="sd">          rows: int</span>
+<span class="sd">              The number of rows for the generated binary matrix.</span>
+<span class="sd">          cols: int</span>
+<span class="sd">              The number of columns for the generated binary matrix.</span>
+<span class="sd">          mode: str</span>
+<span class="sd">              The mode of operation. Accepts either &quot;summation&quot; or &quot;one_hot&quot;.</span>
+<span class="sd">              - &quot;summation&quot;: Produces a scalar count of the number of ones in each x vector.</span>
+<span class="sd">              - &quot;one_hot&quot;: Produces a one-hot encoded representation of the count of ones in each x vector.</span>
+<span class="sd">              Defaults to &quot;one_hot&quot;.</span>
 
-<span class="sd">    mode=summation or one_hot</span>
+<span class="sd">        Returns:</span>
+<span class="sd">          tuple of (generated binary matrix, expected output)</span>
 
-<span class="sd">    for one hot mode, pass in one hot vectors and sum the number of ones in each row</span>
-
-<span class="sd">    must declare NN model with particular number of output columns</span>
-
-<span class="sd">    if mode=summation then declare NN model with one output column</span>
-
-<span class="sd">    if mode=onehot then declare NN model with cols+1 output columns (for values from zero to # cols)</span>
+<span class="sd">        Raises:</span>
+<span class="sd">          SystemExit if the provided `mode` is not &quot;summation&quot; or &quot;one_hot&quot;.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rows</span> <span class="o">*</span> <span class="n">cols</span><span class="p">)])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span><span class="n">cols</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">mode</span><span class="o">==</span><span class="s2">&quot;summation&quot;</span><span class="p">:</span>
@@ -184,14 +210,20 @@
       <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s2">&quot;mode must be summation or one_hot&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span></div>
 
+
 <div class="viewcode-block" id="Distributions.sort">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.distributions.Distributions.sort">[docs]</a>
-  <span class="k">def</span><span class="w"> </span><span class="nf">sort</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">rows</span><span class="p">,</span><span class="n">cols</span><span class="p">):</span>
+  <span class="k">def</span><span class="w"> </span><span class="nf">sort</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;numerical sort</span>
 
-<span class="sd">    generates a matrix of any size</span>
+<span class="sd">        Args:</span>
+<span class="sd">          rows: int</span>
+<span class="sd">            the number of rows for the generated matrix</span>
+<span class="sd">          cols: int</span>
+<span class="sd">            the number of columns for the generated matrix</span>
 
-<span class="sd">    sorts each row into order from smallest to largest</span>
+<span class="sd">        Returns:</span>
+<span class="sd">          tuple of (generated matrix, sorted matrix)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="n">rows</span><span class="p">,</span><span class="n">cols</span><span class="p">))</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">sorted</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))])</span>

@@ -63,11 +63,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#nillanet.activations.Activations.relu_derivative"><code class="docutils literal notranslate"><span class="pre">Activations.relu_derivative()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nillanet.activations.Activations.sigmoid"><code class="docutils literal notranslate"><span class="pre">Activations.sigmoid()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nillanet.activations.Activations.sigmoid_derivative"><code class="docutils literal notranslate"><span class="pre">Activations.sigmoid_derivative()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nillanet.activations.Activations.softmax_matrix"><code class="docutils literal notranslate"><span class="pre">Activations.softmax_matrix()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nillanet.activations.Activations.softmax_matrix_derivative"><code class="docutils literal notranslate"><span class="pre">Activations.softmax_matrix_derivative()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nillanet.activations.Activations.softmax_vector"><code class="docutils literal notranslate"><span class="pre">Activations.softmax_vector()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nillanet.activations.Activations.softmax_vector_derivative"><code class="docutils literal notranslate"><span class="pre">Activations.softmax_vector_derivative()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nillanet.activations.Activations.sum_to_one"><code class="docutils literal notranslate"><span class="pre">Activations.sum_to_one()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.activations.Activations.softmax"><code class="docutils literal notranslate"><span class="pre">Activations.softmax()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nillanet.activations.Activations.tanh"><code class="docutils literal notranslate"><span class="pre">Activations.tanh()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nillanet.activations.Activations.tanh_derivative"><code class="docutils literal notranslate"><span class="pre">Activations.tanh_derivative()</span></code></a></li>
 </ul>
@@ -75,11 +71,10 @@
 <li class="toctree-l2"><a class="reference internal" href="#nillanet.loss.Loss"><code class="docutils literal notranslate"><span class="pre">Loss</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#nillanet.loss.Loss.binary_crossentropy"><code class="docutils literal notranslate"><span class="pre">Loss.binary_crossentropy()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nillanet.loss.Loss.binary_crossentropy_derivative"><code class="docutils literal notranslate"><span class="pre">Loss.binary_crossentropy_derivative()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nillanet.loss.Loss.categorical_crossentropy"><code class="docutils literal notranslate"><span class="pre">Loss.categorical_crossentropy()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nillanet.loss.Loss.categorical_crossentropy_derivative"><code class="docutils literal notranslate"><span class="pre">Loss.categorical_crossentropy_derivative()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nillanet.loss.Loss.mse"><code class="docutils literal notranslate"><span class="pre">Loss.mse()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.loss.Loss.mse_alt"><code class="docutils literal notranslate"><span class="pre">Loss.mse_alt()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.loss.Loss.mse_alt_derivative"><code class="docutils literal notranslate"><span class="pre">Loss.mse_alt_derivative()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nillanet.loss.Loss.mse_derivative"><code class="docutils literal notranslate"><span class="pre">Loss.mse_derivative()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nillanet.loss.Loss.top1_loss"><code class="docutils literal notranslate"><span class="pre">Loss.top1_loss()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#nillanet.io.IO"><code class="docutils literal notranslate"><span class="pre">IO</span></code></a><ul>
@@ -283,7 +278,7 @@ shape (n_samples, n_features + 1).</p>
 <dt class="sig sig-object py" id="nillanet.activations.Activations">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nillanet.activations.</span></span><span class="sig-name descname"><span class="pre">Activations</span></span><a class="reference internal" href="../_modules/nillanet/activations.html#Activations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.activations.Activations" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Helper functions for NN class.</p>
+<p>Activation functions for NN class.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nillanet.activations.Activations.linear">
 <span class="sig-name descname"><span class="pre">linear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/activations.html#Activations.linear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.activations.Activations.linear" title="Link to this definition"></a></dt>
@@ -315,28 +310,8 @@ shape (n_samples, n_features + 1).</p>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="nillanet.activations.Activations.softmax_matrix">
-<span class="sig-name descname"><span class="pre">softmax_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yhat</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/activations.html#Activations.softmax_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.activations.Activations.softmax_matrix" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="nillanet.activations.Activations.softmax_matrix_derivative">
-<span class="sig-name descname"><span class="pre">softmax_matrix_derivative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yhat</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/activations.html#Activations.softmax_matrix_derivative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.activations.Activations.softmax_matrix_derivative" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="nillanet.activations.Activations.softmax_vector">
-<span class="sig-name descname"><span class="pre">softmax_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yhat</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/activations.html#Activations.softmax_vector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.activations.Activations.softmax_vector" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="nillanet.activations.Activations.softmax_vector_derivative">
-<span class="sig-name descname"><span class="pre">softmax_vector_derivative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yhat</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/activations.html#Activations.softmax_vector_derivative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.activations.Activations.softmax_vector_derivative" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="nillanet.activations.Activations.sum_to_one">
-<span class="sig-name descname"><span class="pre">sum_to_one</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yhat</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/activations.html#Activations.sum_to_one"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.activations.Activations.sum_to_one" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="nillanet.activations.Activations.softmax">
+<span class="sig-name descname"><span class="pre">softmax</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/activations.html#Activations.softmax"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.activations.Activations.softmax" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -355,7 +330,7 @@ shape (n_samples, n_features + 1).</p>
 <dt class="sig sig-object py" id="nillanet.loss.Loss">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nillanet.loss.</span></span><span class="sig-name descname"><span class="pre">Loss</span></span><a class="reference internal" href="../_modules/nillanet/loss.html#Loss"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.loss.Loss" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Helper functions for NN class.</p>
+<p>Loss functions for NN class</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nillanet.loss.Loss.binary_crossentropy">
 <span class="sig-name descname"><span class="pre">binary_crossentropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yhat</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/loss.html#Loss.binary_crossentropy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.loss.Loss.binary_crossentropy" title="Link to this definition"></a></dt>
@@ -367,28 +342,23 @@ shape (n_samples, n_features + 1).</p>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="nillanet.loss.Loss.categorical_crossentropy">
-<span class="sig-name descname"><span class="pre">categorical_crossentropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yhat</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/loss.html#Loss.categorical_crossentropy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.loss.Loss.categorical_crossentropy" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="nillanet.loss.Loss.categorical_crossentropy_derivative">
-<span class="sig-name descname"><span class="pre">categorical_crossentropy_derivative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yhat</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/loss.html#Loss.categorical_crossentropy_derivative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.loss.Loss.categorical_crossentropy_derivative" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="nillanet.loss.Loss.mse">
 <span class="sig-name descname"><span class="pre">mse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yhat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/loss.html#Loss.mse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.loss.Loss.mse" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="nillanet.loss.Loss.mse_derivative">
-<span class="sig-name descname"><span class="pre">mse_derivative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yhat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/loss.html#Loss.mse_derivative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.loss.Loss.mse_derivative" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="nillanet.loss.Loss.mse_alt">
+<span class="sig-name descname"><span class="pre">mse_alt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yhat</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/loss.html#Loss.mse_alt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.loss.Loss.mse_alt" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="nillanet.loss.Loss.top1_loss">
-<span class="sig-name descname"><span class="pre">top1_loss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yhat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/loss.html#Loss.top1_loss"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.loss.Loss.top1_loss" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="nillanet.loss.Loss.mse_alt_derivative">
+<span class="sig-name descname"><span class="pre">mse_alt_derivative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yhat</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/loss.html#Loss.mse_alt_derivative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.loss.Loss.mse_alt_derivative" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.loss.Loss.mse_derivative">
+<span class="sig-name descname"><span class="pre">mse_derivative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yhat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/loss.html#Loss.mse_derivative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.loss.Loss.mse_derivative" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -431,44 +401,103 @@ shape (n_samples, n_features + 1).</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nillanet.distributions.Distributions.arithmetic_distribution">
 <span class="sig-name descname"><span class="pre">arithmetic_distribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">depth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/distributions.html#Distributions.arithmetic_distribution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.distributions.Distributions.arithmetic_distribution" title="Link to this definition"></a></dt>
-<dd><p>arithmetic operations</p>
-<p>predict arithmetic result for two input values</p>
-<p>select from five arithmetic operations: add, subtract, multiply, divide, zero (always predict 0)</p>
+<dd><p>predict arithmetic result from distributions of two input values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>depth</strong> – int
+The number of rows for the generated matrix of floating point numbers.</p></li>
+<li><p><strong>mode</strong> – str
+The mode of operation. Accepts either “add”, “subtract”, “multiply”, “divide”, or “zero” (always predict 0).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple of (generated matrix, expected output)</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#SystemExit" title="(in Python v3.13)"><strong>SystemExit</strong></a> – If the provided <cite>mode</cite> is not “summation” or “one_hot”.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nillanet.distributions.Distributions.linear_distribution">
 <span class="sig-name descname"><span class="pre">linear_distribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">depth</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/distributions.html#Distributions.linear_distribution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.distributions.Distributions.linear_distribution" title="Link to this definition"></a></dt>
-<dd><p>linear regression</p>
-<p>predict y from x for x-values on a random line with slope and intercept</p>
+<dd><p>linear regression that predicts y from x for x-values on a random line with slope and intercept</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>depth</strong> – int
+The number of x-values to generate.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple of (generated vector of x-values, vector of expected y-values)</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nillanet.distributions.Distributions.logical_distribution">
 <span class="sig-name descname"><span class="pre">logical_distribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">depth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/distributions.html#Distributions.logical_distribution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.distributions.Distributions.logical_distribution" title="Link to this definition"></a></dt>
 <dd><p>boolean logic</p>
-<p>predict binary result for two binary inputs [0,1]</p>
-<p>choice of four boolean operations: and, or, xor, xnor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>depth</strong> – int
+The number of rows for the generated two-column binary matrix.</p></li>
+<li><p><strong>mode</strong> – str
+Accepts “and”, “or”, “xor”, or “xnor”.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple of (generated binary matrix, expected output)</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nillanet.distributions.Distributions.sort">
 <span class="sig-name descname"><span class="pre">sort</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rows</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/distributions.html#Distributions.sort"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.distributions.Distributions.sort" title="Link to this definition"></a></dt>
 <dd><p>numerical sort</p>
-<p>generates a matrix of any size</p>
-<p>sorts each row into order from smallest to largest</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rows</strong> – int
+the number of rows for the generated matrix</p></li>
+<li><p><strong>cols</strong> – int
+the number of columns for the generated matrix</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple of (generated matrix, sorted matrix)</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nillanet.distributions.Distributions.summation">
-<span class="sig-name descname"><span class="pre">summation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rows</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'summation'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/distributions.html#Distributions.summation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.distributions.Distributions.summation" title="Link to this definition"></a></dt>
-<dd><p>sum numbers in each row</p>
-<p>generates a matrix of zeros and ones</p>
-<p>mode=summation or one_hot</p>
-<p>for one hot mode, pass in one hot vectors and sum the number of ones in each row</p>
-<p>must declare NN model with particular number of output columns</p>
-<p>if mode=summation then declare NN model with one output column</p>
-<p>if mode=onehot then declare NN model with cols+1 output columns (for values from zero to # cols)</p>
+<span class="sig-name descname"><span class="pre">summation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rows</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'one_hot'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/distributions.html#Distributions.summation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.distributions.Distributions.summation" title="Link to this definition"></a></dt>
+<dd><p>distributions of binary vectors for testing binary cross entropy (one-hot mode only)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rows</strong> – int
+The number of rows for the generated binary matrix.</p></li>
+<li><p><strong>cols</strong> – int
+The number of columns for the generated binary matrix.</p></li>
+<li><p><strong>mode</strong> – str
+The mode of operation. Accepts either “summation” or “one_hot”.
+- “summation”: Produces a scalar count of the number of ones in each x vector.
+- “one_hot”: Produces a one-hot encoded representation of the count of ones in each x vector.
+Defaults to “one_hot”.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple of (generated binary matrix, expected output)</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>SystemExit if the provided mode is not &quot;summation&quot;</strong><strong> or </strong><strong>&quot;one_hot&quot;.</strong> – </p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
