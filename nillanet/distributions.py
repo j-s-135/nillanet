@@ -20,7 +20,7 @@ class Distributions(object):
     """linear regression that predicts y from x for x-values on a random line with slope and intercept
 
         Args:
-          depth: int
+          depth (int):
               The number of x-values to generate.
 
         Returns:
@@ -39,9 +39,9 @@ class Distributions(object):
     """boolean logic
 
         Args:
-          depth: int
+          depth (int):
               The number of rows for the generated two-column binary matrix.
-          mode: str
+          mode (str):
               Accepts "and", "or", "xor", or "xnor".
 
         Returns:
@@ -65,9 +65,9 @@ class Distributions(object):
     """predict arithmetic result from distributions of two input values
 
         Args:
-          depth: int
+          depth (int):
               The number of rows for the generated matrix of floating point numbers.
-          mode: str
+          mode (str):
               The mode of operation. Accepts either "add", "subtract", "multiply", "divide", or "zero" (always predict 0).
 
         Returns:
@@ -97,11 +97,11 @@ class Distributions(object):
     """distributions of binary vectors for testing binary cross entropy (one-hot mode only)
 
         Args:
-          rows: int
+          rows (int):
               The number of rows for the generated binary matrix.
-          cols: int
+          cols (int):
               The number of columns for the generated binary matrix.
-          mode: str
+          mode (str):
               The mode of operation. Accepts either "summation" or "one_hot".
               - "summation": Produces a scalar count of the number of ones in each x vector.
               - "one_hot": Produces a one-hot encoded representation of the count of ones in each x vector.
@@ -130,9 +130,9 @@ class Distributions(object):
     """numerical sort
 
         Args:
-          rows: int
+          rows (int):
             the number of rows for the generated matrix
-          cols: int
+          cols (int):
             the number of columns for the generated matrix
 
         Returns:
