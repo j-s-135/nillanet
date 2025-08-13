@@ -38,7 +38,7 @@ class NN(object):
         derivative3 (Callable[..., cupy.ndarray]): Derivative of ``loss``
             with respect to predictions (same signature as ``loss``).
         learning_rate (float): SGD step size.
-        dtype (cupy.dtype, optional): Floating dtype for parameters and data.
+        dtype (cupy.dtype, optional): Floating point dtype for parameters and data.
             Defaults to ``cupy.float32``.
 
     Attributes:
@@ -48,7 +48,7 @@ class NN(object):
         W (list[cupy.ndarray]): Layer weight matrices; ``W[i]`` has shape
             (in_features_i, out_features_i).
         architecture (list[int]): Layer sizes as provided.
-        learning_rate (float): SGD step size (cast to ``dtype``).
+        learning_rate (float): SGD step size.
   """
 
   def __init__(self, input, output, architecture, activation, derivative1,
@@ -69,9 +69,9 @@ class NN(object):
     self.classifier_derivative = derivative2
     self.loss = loss
     self.loss_derivative = derivative3
-    self.learning_rate = learning_rate #dtype.type(learning_rate)  # keep scalar dtype consistent
+    self.learning_rate = learning_rate
 
-    # weights initialized from [-1, 1] (kept your scheme; could swap to Xavier/He later)
+    # weights initialized from [-1, 1]
     self.W = []
     features = self.X.shape[1]
     for i in range(len(self.architecture)):
@@ -120,7 +120,7 @@ class NN(object):
         Notes:
             Ensures inputs/targets reside on device and are at least 2D.
     """
-    # ensure inputs live on device & 2D
+    # ensure inputs reside on device & 2D
     x = cp.atleast_2d(cp.asarray(x))
     y = cp.asarray(y)
 

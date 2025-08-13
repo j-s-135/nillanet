@@ -4,7 +4,6 @@ import os
 import math
 import random
 import re
-import pickle
 import sys
 
 cp.random.seed()
@@ -119,7 +118,7 @@ class Distributions(object):
       y = cp.array([[cp.sum(x[i])] for i in range(0,len(x))])
     elif mode=="one_hot":
       # y = one hot vector with a 1 in the place of the number of ones in x vector
-      y = cp.array([[0] * (cols + 1) for i in range(rows)]) # Initialize y with the correct shape
+      y = cp.array([[0] * (cols + 1) for i in range(rows)])
       for i in range(rows):
         y[i,cp.sum(x[i])] = 1
     else:
