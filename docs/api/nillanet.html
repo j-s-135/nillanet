@@ -405,10 +405,8 @@ shape (n_samples, n_features + 1).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>depth</strong> – int
-The number of rows for the generated matrix of floating point numbers.</p></li>
-<li><p><strong>mode</strong> – str
-The mode of operation. Accepts either “add”, “subtract”, “multiply”, “divide”, or “zero” (always predict 0).</p></li>
+<li><p><strong>depth</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – The number of rows for the generated matrix of floating point numbers.</p></li>
+<li><p><strong>mode</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The mode of operation. Accepts either “add”, “subtract”, “multiply”, “divide”, or “zero” (always predict 0).</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -426,8 +424,7 @@ The mode of operation. Accepts either “add”, “subtract”, “multiply”,
 <dd><p>linear regression that predicts y from x for x-values on a random line with slope and intercept</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>depth</strong> – int
-The number of x-values to generate.</p>
+<dd class="field-odd"><p><strong>depth</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – The number of x-values to generate.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>tuple of (generated vector of x-values, vector of expected y-values)</p>
@@ -442,10 +439,8 @@ The number of x-values to generate.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>depth</strong> – int
-The number of rows for the generated two-column binary matrix.</p></li>
-<li><p><strong>mode</strong> – str
-Accepts “and”, “or”, “xor”, or “xnor”.</p></li>
+<li><p><strong>depth</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – The number of rows for the generated two-column binary matrix.</p></li>
+<li><p><strong>mode</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Accepts “and”, “or”, “xor”, or “xnor”.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -461,10 +456,8 @@ Accepts “and”, “or”, “xor”, or “xnor”.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>rows</strong> – int
-the number of rows for the generated matrix</p></li>
-<li><p><strong>cols</strong> – int
-the number of columns for the generated matrix</p></li>
+<li><p><strong>rows</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the number of rows for the generated matrix</p></li>
+<li><p><strong>cols</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the number of columns for the generated matrix</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -480,12 +473,9 @@ the number of columns for the generated matrix</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>rows</strong> – int
-The number of rows for the generated binary matrix.</p></li>
-<li><p><strong>cols</strong> – int
-The number of columns for the generated binary matrix.</p></li>
-<li><p><strong>mode</strong> – str
-The mode of operation. Accepts either “summation” or “one_hot”.
+<li><p><strong>rows</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – The number of rows for the generated binary matrix.</p></li>
+<li><p><strong>cols</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – The number of columns for the generated binary matrix.</p></li>
+<li><p><strong>mode</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The mode of operation. Accepts either “summation” or “one_hot”.
 - “summation”: Produces a scalar count of the number of ones in each x vector.
 - “one_hot”: Produces a one-hot encoded representation of the count of ones in each x vector.
 Defaults to “one_hot”.</p></li>
