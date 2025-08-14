@@ -150,7 +150,7 @@ losses or their average.</p></li>
 <li><p><strong>derivative3</strong> (<em>Callable</em><em>[</em><em>...</em><em>, </em><a class="reference external" href="https://docs.cupy.dev/en/stable/reference/generated/cupy.ndarray.html#cupy.ndarray" title="(in CuPy v13.5.1)"><em>cupy.ndarray</em></a><em>]</em>) – Derivative of <code class="docutils literal notranslate"><span class="pre">loss</span></code>
 with respect to predictions (same signature as <code class="docutils literal notranslate"><span class="pre">loss</span></code>).</p></li>
 <li><p><strong>learning_rate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – SGD step size.</p></li>
-<li><p><strong>dtype</strong> (<em>cupy.dtype</em><em>, </em><em>optional</em>) – Floating dtype for parameters and data.
+<li><p><strong>dtype</strong> (<em>cupy.dtype</em><em>, </em><em>optional</em>) – Floating point dtype for parameters and data.
 Defaults to <code class="docutils literal notranslate"><span class="pre">cupy.float32</span></code>.</p></li>
 </ul>
 </dd>
@@ -204,7 +204,7 @@ shape (n_samples, n_features + 1).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nillanet.model.NN.learning_rate">
 <span class="sig-name descname"><span class="pre">learning_rate</span></span><a class="headerlink" href="#nillanet.model.NN.learning_rate" title="Link to this definition"></a></dt>
-<dd><p>SGD step size (cast to <code class="docutils literal notranslate"><span class="pre">dtype</span></code>).</p>
+<dd><p>SGD step size.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a></p>

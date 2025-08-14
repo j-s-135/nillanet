@@ -111,7 +111,7 @@
 <span class="sd">        derivative3 (Callable[..., cupy.ndarray]): Derivative of ``loss``</span>
 <span class="sd">            with respect to predictions (same signature as ``loss``).</span>
 <span class="sd">        learning_rate (float): SGD step size.</span>
-<span class="sd">        dtype (cupy.dtype, optional): Floating dtype for parameters and data.</span>
+<span class="sd">        dtype (cupy.dtype, optional): Floating point dtype for parameters and data.</span>
 <span class="sd">            Defaults to ``cupy.float32``.</span>
 
 <span class="sd">    Attributes:</span>
@@ -121,7 +121,7 @@
 <span class="sd">        W (list[cupy.ndarray]): Layer weight matrices; ``W[i]`` has shape</span>
 <span class="sd">            (in_features_i, out_features_i).</span>
 <span class="sd">        architecture (list[int]): Layer sizes as provided.</span>
-<span class="sd">        learning_rate (float): SGD step size (cast to ``dtype``).</span>
+<span class="sd">        learning_rate (float): SGD step size.</span>
 <span class="sd">  &quot;&quot;&quot;</span>
 
   <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">architecture</span><span class="p">,</span> <span class="n">activation</span><span class="p">,</span> <span class="n">derivative1</span><span class="p">,</span>
@@ -142,9 +142,9 @@
     <span class="bp">self</span><span class="o">.</span><span class="n">classifier_derivative</span> <span class="o">=</span> <span class="n">derivative2</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">loss</span> <span class="o">=</span> <span class="n">loss</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">loss_derivative</span> <span class="o">=</span> <span class="n">derivative3</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate</span> <span class="o">=</span> <span class="n">learning_rate</span> <span class="c1">#dtype.type(learning_rate)  # keep scalar dtype consistent</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate</span> <span class="o">=</span> <span class="n">learning_rate</span>
 
-    <span class="c1"># weights initialized from [-1, 1] (kept your scheme; could swap to Xavier/He later)</span>
+    <span class="c1"># weights initialized from [-1, 1]</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">W</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">features</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">architecture</span><span class="p">)):</span>
@@ -198,7 +198,7 @@
 <span class="sd">        Notes:</span>
 <span class="sd">            Ensures inputs/targets reside on device and are at least 2D.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># ensure inputs live on device &amp; 2D</span>
+    <span class="c1"># ensure inputs reside on device &amp; 2D</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 
