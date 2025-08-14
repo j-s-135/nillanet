@@ -24,9 +24,10 @@ input = x
 output = y
 architecture = [32,16,8,5]
 learning_rate = 0.01
+epochs = 10000
 
 model = NN(input,output,architecture,activation,derivative1,classifier,derivative2,loss,derivative3,learning_rate)
-model.train(10000,0)
+model.train(epochs)
 prediction = model.predict(x)
 
 print("prediction")

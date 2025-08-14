@@ -26,18 +26,17 @@ input = x
 output = y
 architecture = [2,4,4]
 learning_rate = 0.1
+epochs = 1000
 
 model = NN(input,output,architecture,activation,derivative1,classifier,derivative2,loss,derivative3,learning_rate)
-model.train(1000,0)
+model.train(epochs)
 prediction = model.predict(x)
 
 print("one hots")
-print("")
 print("prediction")
 print(prediction)
 print("expected")
 print(y)
-print("")
 
 # summation
 
@@ -61,13 +60,13 @@ input = x
 output = y
 architecture = [2,4,1]
 learning_rate = 0.1
+epochs = 1000
 
 model = NN(input,output,architecture,activation,derivative1,classifier,derivative2,loss,derivative3,learning_rate)
-model.train(1000,1)
+model.train(epochs)
 prediction = model.predict(x)
 
 print("summation")
-print("")
 print("prediction")
 print(prediction)
 print("expected")
