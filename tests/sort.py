@@ -7,8 +7,6 @@ d = Distributions()
 x,y = d.sort(10,5)
 print(x.shape)
 print(y.shape)
-print(x)
-print(y)
 
 a = Activations()
 activation = a.sigmoid
@@ -22,12 +20,13 @@ derivative3 = l.mse_derivative
 
 input = x
 output = y
+features = x.shape[1]
 architecture = [32,16,8,5]
 learning_rate = 0.01
 epochs = 10000
 
-model = NN(input,output,architecture,activation,derivative1,classifier,derivative2,loss,derivative3,learning_rate)
-model.train(epochs)
+model = NN(features,architecture,activation,derivative1,classifier,derivative2,loss,derivative3,learning_rate)
+model.train(input,output,epochs)
 prediction = model.predict(x)
 
 print("prediction")

@@ -7,8 +7,6 @@ d = Distributions()
 x,y = d.arithmetic_distribution(10,"add")
 print(x.shape)
 print(y.shape)
-print(x)
-print(y)
 
 a = Activations()
 activation = a.sigmoid
@@ -22,13 +20,14 @@ derivative3 = l.mse_derivative
 
 input = x
 output = y
+features = x.shape[1]
 architecture = [2,4,1]
 learning_rate = 0.1
 epochs = 10000
 
-model = NN(input,output,architecture,activation,derivative1,classifier,derivative2,loss,derivative3,learning_rate)
-model.train(epochs)
-prediction = model.predict(x)
+model = NN(features,architecture,activation,derivative1,classifier,derivative2,loss,derivative3,learning_rate)
+model.train(input,output,epochs)
+prediction = model.predict(input)
 
 print("prediction")
 print(prediction)

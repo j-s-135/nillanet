@@ -19,10 +19,7 @@ class NN(object):
     to avoid host↔device copies.
 
     Args:
-        input (cupy.ndarray | numpy.ndarray): Training inputs of shape
-            (n_samples, n_features). If NumPy, it will be moved to device.
-        output (cupy.ndarray | numpy.ndarray): Training targets of shape
-            (n_samples, n_outputs). If NumPy, it will be moved to device.
+        features (int): Columnar shape of inputs.
         architecture (list[int]): Units per layer, including output layer.
         activation (Callable[[cupy.ndarray], cupy.ndarray]): Hidden-layer
             activation function.
@@ -51,17 +48,9 @@ class NN(object):
         learning_rate (float): SGD step size.
   """
 
-  def __init__(self, input, output, architecture, activation, derivative1,
+  def __init__(self, features, architecture, activation, derivative1,
                classifier, derivative2, loss, derivative3, learning_rate,
                dtype=cp.float32):
-    # keep data on device and in a consistent dtype
-    self.X = cp.asarray(input, dtype=dtype)
-    self.Y = cp.asarray(output, dtype=dtype)
-
-    # device-side bias column (avoid NumPy)
-    bias = cp.ones((self.X.shape[0], 1), dtype=dtype)
-    self.X = cp.concatenate((bias, self.X), axis=1)
-
     self.architecture = architecture
     self.activation = activation
     self.activation_derivative = derivative1
@@ -70,20 +59,25 @@ class NN(object):
     self.loss = loss
     self.loss_derivative = derivative3
     self.learning_rate = learning_rate
+    self.dtype = dtype
 
     # weights initialized from [-1, 1]
     self.W = []
-    features = self.X.shape[1]
+    features += 1 # bias
     for i in range(len(self.architecture)):
       nodes = self.architecture[i]
-      w = 2 * cp.random.random((features, nodes), dtype=dtype) - 1
+      w = 2 * cp.random.random((features, nodes), dtype=self.dtype) - 1
       self.W.append(w)
       features = nodes
 
-  def train(self, epochs=1, batch=0):
+  def train(self, input, output, epochs=1, batch=0):
     """Train the model using simple SGD.
 
         Args:
+            input (cupy.ndarray | numpy.ndarray): Training inputs of shape
+              (n_samples, n_features). If NumPy, it will be moved to device.
+            output (cupy.ndarray | numpy.ndarray): Training targets of shape
+              (n_samples, n_outputs). If NumPy, it will be moved to device.
             epochs: Number of SGD steps to run.
             batch: One of:
                 - ``1``: sample a single example per step (pure SGD)
@@ -93,19 +87,27 @@ class NN(object):
         Raises:
             SystemExit: If ``batch`` is invalid.
     """
-    n = self.X.shape[0]
+    # keep data on device and in a consistent dtype
+    X = cp.asarray(input, dtype=self.dtype)
+    Y = cp.asarray(output, dtype=self.dtype)
+
+    # device-side bias column (avoid NumPy)
+    bias = cp.ones((X.shape[0], 1), dtype=self.dtype)
+    X = cp.concatenate((bias, X), axis=1)
+
+    n = X.shape[0]
     if batch == 1:
       for _ in range(epochs):
         index = random.randint(0, n - 1)
-        self.batch(self.X[index], self.Y[index])
+        self.batch(X[index], Y[index])
     elif batch == 0:
       for _ in range(epochs):
-        self.batch(self.X, self.Y)
+        self.batch(X, Y)
     elif 1 < batch < n:
       for _ in range(epochs):
         index = random.randint(0, n - batch)
-        x = self.X[index:index + batch]
-        y = self.Y[index:index + batch]
+        x = X[index:index + batch]
+        y = Y[index:index + batch]
         self.batch(x, y)
     else:
       sys.exit(f"improper batch size {batch}")
