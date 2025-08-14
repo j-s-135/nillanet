@@ -39,13 +39,8 @@ class NN(object):
             Defaults to ``cupy.float32``.
 
     Attributes:
-        X (cupy.ndarray): Training inputs with a prepended bias column,
-            shape (n_samples, n_features + 1).
-        Y (cupy.ndarray): Training targets on device.
         W (list[cupy.ndarray]): Layer weight matrices; ``W[i]`` has shape
             (in_features_i, out_features_i).
-        architecture (list[int]): Layer sizes as provided.
-        learning_rate (float): SGD step size.
   """
 
   def __init__(self, features, architecture, activation, derivative1,
