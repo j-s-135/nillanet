@@ -45,11 +45,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">nillanet module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#nillanet.model.NN"><code class="docutils literal notranslate"><span class="pre">NN</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#nillanet.model.NN.X"><code class="docutils literal notranslate"><span class="pre">NN.X</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nillanet.model.NN.Y"><code class="docutils literal notranslate"><span class="pre">NN.Y</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nillanet.model.NN.W"><code class="docutils literal notranslate"><span class="pre">NN.W</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nillanet.model.NN.architecture"><code class="docutils literal notranslate"><span class="pre">NN.architecture</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nillanet.model.NN.learning_rate"><code class="docutils literal notranslate"><span class="pre">NN.learning_rate</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nillanet.model.NN.batch"><code class="docutils literal notranslate"><span class="pre">NN.batch()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nillanet.model.NN.predict"><code class="docutils literal notranslate"><span class="pre">NN.predict()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nillanet.model.NN.summary"><code class="docutils literal notranslate"><span class="pre">NN.summary()</span></code></a></li>
@@ -153,29 +149,6 @@ Defaults to <code class="docutils literal notranslate"><span class="pre">cupy.fl
 </dd>
 </dl>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="nillanet.model.NN.X">
-<span class="sig-name descname"><span class="pre">X</span></span><a class="headerlink" href="#nillanet.model.NN.X" title="Link to this definition"></a></dt>
-<dd><p>Training inputs with a prepended bias column,
-shape (n_samples, n_features + 1).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.cupy.dev/en/stable/reference/generated/cupy.ndarray.html#cupy.ndarray" title="(in CuPy v13.5.1)">cupy.ndarray</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="nillanet.model.NN.Y">
-<span class="sig-name descname"><span class="pre">Y</span></span><a class="headerlink" href="#nillanet.model.NN.Y" title="Link to this definition"></a></dt>
-<dd><p>Training targets on device.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.cupy.dev/en/stable/reference/generated/cupy.ndarray.html#cupy.ndarray" title="(in CuPy v13.5.1)">cupy.ndarray</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
 <dt class="sig sig-object py" id="nillanet.model.NN.W">
 <span class="sig-name descname"><span class="pre">W</span></span><a class="headerlink" href="#nillanet.model.NN.W" title="Link to this definition"></a></dt>
 <dd><p>Layer weight matrices; <code class="docutils literal notranslate"><span class="pre">W[i]</span></code> has shape
@@ -183,28 +156,6 @@ shape (n_samples, n_features + 1).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a>[<a class="reference external" href="https://docs.cupy.dev/en/stable/reference/generated/cupy.ndarray.html#cupy.ndarray" title="(in CuPy v13.5.1)">cupy.ndarray</a>]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="nillanet.model.NN.architecture">
-<span class="sig-name descname"><span class="pre">architecture</span></span><a class="headerlink" href="#nillanet.model.NN.architecture" title="Link to this definition"></a></dt>
-<dd><p>Layer sizes as provided.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a>]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="nillanet.model.NN.learning_rate">
-<span class="sig-name descname"><span class="pre">learning_rate</span></span><a class="headerlink" href="#nillanet.model.NN.learning_rate" title="Link to this definition"></a></dt>
-<dd><p>SGD step size.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a></p>
 </dd>
 </dl>
 </dd></dl>
