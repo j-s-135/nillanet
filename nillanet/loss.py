@@ -7,7 +7,7 @@ class Loss(object):
     pass
 
   def mse(self,yhat,y):
-    return (yhat - y)**2
+    return cp.mean((yhat - y)**2)
 
   def mse_derivative(self,yhat,y):
     if yhat.shape == y.shape:
@@ -22,9 +22,10 @@ class Loss(object):
       return y - yhat
     return cp.reshape(y,yhat.shape) - yhat
 
-  def binary_crossentropy(self,y,yhat):
+  def binary_crossentropy(self,y,yhat,epsilon=1e-7):
+    yhat = cp.clip(yhat, epsilon, 1 - epsilon)
     return -(y * cp.log(yhat) + (1 - y) * cp.log(1 - yhat))
 
-  # source https://www.python-unleashed.com/post/derivation-of-the-binary-cross-entropy-loss-gradient
-  def binary_crossentropy_derivative(self,y,yhat):
-    return yhat - y
+  def binary_crossentropy_derivative(self,y,yhat,epsilon=1e-7):
+    yhat = cp.clip(yhat, epsilon, 1 - epsilon)
+    return -(y / yhat) + (1 - y) / (1 - yhat)
