@@ -15,10 +15,10 @@ class Activations(object):
     return self.sigmoid(x) * (1 - self.sigmoid(x))
 
   def tanh(self,x):
-    return cp.tanh(x) # return (1 - cp.exp(-2 * x)) / (1 + cp.exp(-2 * x))
+    return (1 - cp.exp(-2 * x)) / (1 + cp.exp(-2 * x))
 
   def tanh_derivative(self,x):
-    return 1 - (x ** 2)
+    return 1 - (self.tanh(x) ** 2)
 
   def linear(self,x):
     return x
@@ -34,6 +34,7 @@ class Activations(object):
   def relu_derivative(self,x):
     if isinstance(x,list) or isinstance(x,cp.ndarray):
       x[x > 0] = 1
+      x[x < 0] = 0
       return x
     else:
       return 1 if x > 0 else 0

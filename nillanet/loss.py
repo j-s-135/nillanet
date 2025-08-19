@@ -11,7 +11,7 @@ class Loss(object):
 
   def mse_derivative(self,yhat,y):
     if yhat.shape == y.shape:
-      return yhat - y
+        return yhat - y
     return yhat - cp.reshape(y,yhat.shape)
 
   def mse_alt(y,yhat):
@@ -19,13 +19,11 @@ class Loss(object):
 
   def mse_alt_derivative(y,yhat):
     if y.shape == yhat.shape:
-      return y - yhat
+        return y - yhat
     return cp.reshape(y,yhat.shape) - yhat
 
-  def binary_crossentropy(self,y,yhat,epsilon=1e-7):
-    yhat = cp.clip(yhat, epsilon, 1 - epsilon)
+  def binary_crossentropy(self,y,yhat):
     return -(y * cp.log(yhat) + (1 - y) * cp.log(1 - yhat))
 
-  def binary_crossentropy_derivative(self,y,yhat,epsilon=1e-7):
-    yhat = cp.clip(yhat, epsilon, 1 - epsilon)
+  def binary_crossentropy_derivative(self,y,yhat):
     return -(y / yhat) + (1 - y) / (1 - yhat)

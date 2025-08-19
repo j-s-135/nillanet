@@ -89,7 +89,7 @@
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.loss.Loss.mse_derivative">[docs]</a>
   <span class="k">def</span><span class="w"> </span><span class="nf">mse_derivative</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">yhat</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">yhat</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>
-      <span class="k">return</span> <span class="n">yhat</span> <span class="o">-</span> <span class="n">y</span>
+        <span class="k">return</span> <span class="n">yhat</span> <span class="o">-</span> <span class="n">y</span>
     <span class="k">return</span> <span class="n">yhat</span> <span class="o">-</span> <span class="n">cp</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">yhat</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span></div>
 
 
@@ -103,21 +103,19 @@
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.loss.Loss.mse_alt_derivative">[docs]</a>
   <span class="k">def</span><span class="w"> </span><span class="nf">mse_alt_derivative</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">yhat</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">yhat</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>
-      <span class="k">return</span> <span class="n">y</span> <span class="o">-</span> <span class="n">yhat</span>
+        <span class="k">return</span> <span class="n">y</span> <span class="o">-</span> <span class="n">yhat</span>
     <span class="k">return</span> <span class="n">cp</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">yhat</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">-</span> <span class="n">yhat</span></div>
 
 
 <div class="viewcode-block" id="Loss.binary_crossentropy">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.loss.Loss.binary_crossentropy">[docs]</a>
-  <span class="k">def</span><span class="w"> </span><span class="nf">binary_crossentropy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">yhat</span><span class="p">,</span><span class="n">epsilon</span><span class="o">=</span><span class="mf">1e-7</span><span class="p">):</span>
-    <span class="n">yhat</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">yhat</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">epsilon</span><span class="p">)</span>
+  <span class="k">def</span><span class="w"> </span><span class="nf">binary_crossentropy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">yhat</span><span class="p">):</span>
     <span class="k">return</span> <span class="o">-</span><span class="p">(</span><span class="n">y</span> <span class="o">*</span> <span class="n">cp</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">yhat</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span> <span class="o">*</span> <span class="n">cp</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">yhat</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="Loss.binary_crossentropy_derivative">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.loss.Loss.binary_crossentropy_derivative">[docs]</a>
-  <span class="k">def</span><span class="w"> </span><span class="nf">binary_crossentropy_derivative</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">yhat</span><span class="p">,</span><span class="n">epsilon</span><span class="o">=</span><span class="mf">1e-7</span><span class="p">):</span>
-    <span class="n">yhat</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">yhat</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">epsilon</span><span class="p">)</span>
+  <span class="k">def</span><span class="w"> </span><span class="nf">binary_crossentropy_derivative</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">yhat</span><span class="p">):</span>
     <span class="k">return</span> <span class="o">-</span><span class="p">(</span><span class="n">y</span> <span class="o">/</span> <span class="n">yhat</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">yhat</span><span class="p">)</span></div>
 </div>
 
