@@ -82,40 +82,87 @@
 <div class="viewcode-block" id="Loss.mse">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.loss.Loss.mse">[docs]</a>
   <span class="k">def</span><span class="w"> </span><span class="nf">mse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">yhat</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">cp</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">yhat</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span></div>
+<span class="w">      </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">      Mean Squared Error (MSE) between predicted values and actual values.</span>
+
+<span class="sd">      Parameters</span>
+<span class="sd">      -----------</span>
+<span class="sd">      yhat: tensor</span>
+<span class="sd">          The predicted values.</span>
+<span class="sd">      y: tensor</span>
+<span class="sd">          The actual values.</span>
+
+<span class="sd">      Returns</span>
+<span class="sd">      -------------</span>
+<span class="sd">      tensor:</span>
+<span class="sd">          The Mean Squared Error between the predicted and actual values.</span>
+<span class="sd">      &quot;&quot;&quot;</span>
+      <span class="k">return</span> <span class="n">cp</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">yhat</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Loss.mse_derivative">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.loss.Loss.mse_derivative">[docs]</a>
   <span class="k">def</span><span class="w"> </span><span class="nf">mse_derivative</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">yhat</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Derivative of the Mean Squared Error (MSE) loss function.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    yhat: tensor</span>
+<span class="sd">        The predicted values.</span>
+<span class="sd">    y: tensor</span>
+<span class="sd">        The actual values.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    tensor</span>
+<span class="sd">        The derivative of the MSE loss function with respect to the inputs.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">yhat</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">yhat</span> <span class="o">-</span> <span class="n">y</span>
     <span class="k">return</span> <span class="n">yhat</span> <span class="o">-</span> <span class="n">cp</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">yhat</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Loss.mse_alt">
-<a class="viewcode-back" href="../../api/nillanet.html#nillanet.loss.Loss.mse_alt">[docs]</a>
-  <span class="k">def</span><span class="w"> </span><span class="nf">mse_alt</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">yhat</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">cp</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">yhat</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="Loss.mse_alt_derivative">
-<a class="viewcode-back" href="../../api/nillanet.html#nillanet.loss.Loss.mse_alt_derivative">[docs]</a>
-  <span class="k">def</span><span class="w"> </span><span class="nf">mse_alt_derivative</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">yhat</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">yhat</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">y</span> <span class="o">-</span> <span class="n">yhat</span>
-    <span class="k">return</span> <span class="n">cp</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">yhat</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">-</span> <span class="n">yhat</span></div>
-
-
 <div class="viewcode-block" id="Loss.binary_crossentropy">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.loss.Loss.binary_crossentropy">[docs]</a>
   <span class="k">def</span><span class="w"> </span><span class="nf">binary_crossentropy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">yhat</span><span class="p">):</span>
-    <span class="k">return</span> <span class="o">-</span><span class="p">(</span><span class="n">y</span> <span class="o">*</span> <span class="n">cp</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">yhat</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span> <span class="o">*</span> <span class="n">cp</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">yhat</span><span class="p">))</span></div>
+<span class="w">      </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">      Evaluates the distance between the true labels and the predicted probabilities</span>
+<span class="sd">      by evaluating the logarithmic loss.</span>
+
+<span class="sd">      Parameters</span>
+<span class="sd">      -----------</span>
+<span class="sd">      y: tensor</span>
+<span class="sd">          The true labels.</span>
+<span class="sd">      yhat: tensor</span>
+<span class="sd">          The predicted probabilities.</span>
+
+<span class="sd">      Returns</span>
+<span class="sd">      --------</span>
+<span class="sd">      tensor:</span>
+<span class="sd">          The logarithmic loss between the true labels and the predicted probabilities.</span>
+<span class="sd">      &quot;&quot;&quot;</span>
+      <span class="k">return</span> <span class="o">-</span><span class="p">(</span><span class="n">y</span> <span class="o">*</span> <span class="n">cp</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">yhat</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span> <span class="o">*</span> <span class="n">cp</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">yhat</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="Loss.binary_crossentropy_derivative">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.loss.Loss.binary_crossentropy_derivative">[docs]</a>
   <span class="k">def</span><span class="w"> </span><span class="nf">binary_crossentropy_derivative</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">yhat</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Derivative of the binary cross-entropy loss function.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    -----------</span>
+<span class="sd">    y: tensor</span>
+<span class="sd">        The true labels.</span>
+<span class="sd">    yhat: tensor</span>
+<span class="sd">        The predicted probabilities.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    --------</span>
+<span class="sd">    tensor:</span>
+<span class="sd">        The derivative of the binary cross-entropy loss function with respect to the inputs.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="o">-</span><span class="p">(</span><span class="n">y</span> <span class="o">/</span> <span class="n">yhat</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">yhat</span><span class="p">)</span></div>
 </div>
 

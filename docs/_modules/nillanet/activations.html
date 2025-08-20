@@ -84,66 +84,129 @@
 <div class="viewcode-block" id="Activations.sigmoid">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.activations.Activations.sigmoid">[docs]</a>
   <span class="k">def</span><span class="w"> </span><span class="nf">sigmoid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">cp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span></div>
+<span class="w">      </span><span class="sd">&quot;&quot;&quot;Computes the sigmoid function for the given input.</span>
+
+<span class="sd">      :param x: The values for which the sigmoid function needs to be computed.</span>
+<span class="sd">      :type x: tensor</span>
+<span class="sd">      :return: The computed sigmoid values corresponding to the input x.</span>
+<span class="sd">      :rtype: tensor</span>
+<span class="sd">      &quot;&quot;&quot;</span>
+      <span class="k">return</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">cp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="Activations.sigmoid_derivative">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.activations.Activations.sigmoid_derivative">[docs]</a>
   <span class="k">def</span><span class="w"> </span><span class="nf">sigmoid_derivative</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">))</span></div>
+<span class="w">      </span><span class="sd">&quot;&quot;&quot;Computes the derivative of the sigmoid function for the given input.</span>
+
+<span class="sd">      :param x: The values for which the derivative of the sigmoid function needs to be computed.</span>
+<span class="sd">      :type x: tensor</span>
+<span class="sd">      :return: The computed derivative values corresponding to the input x.</span>
+<span class="sd">      :rtype: tensor</span>
+<span class="sd">      &quot;&quot;&quot;</span>
+      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="Activations.tanh">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.activations.Activations.tanh">[docs]</a>
   <span class="k">def</span><span class="w"> </span><span class="nf">tanh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">cp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span> <span class="o">*</span> <span class="n">x</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">cp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span> <span class="o">*</span> <span class="n">x</span><span class="p">))</span></div>
+<span class="w">      </span><span class="sd">&quot;&quot;&quot;Computes the hyperbolic tangent function for the given input.</span>
+
+<span class="sd">      :param x: The values for which the hyperbolic tangent function needs to be computed.</span>
+<span class="sd">      :type x: tensor</span>
+<span class="sd">      :return: The computed hyperbolic tangent values corresponding to the input x.</span>
+<span class="sd">      :rtype: tensor</span>
+<span class="sd">      &quot;&quot;&quot;</span>
+      <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">cp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span> <span class="o">*</span> <span class="n">x</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">cp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span> <span class="o">*</span> <span class="n">x</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="Activations.tanh_derivative">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.activations.Activations.tanh_derivative">[docs]</a>
   <span class="k">def</span><span class="w"> </span><span class="nf">tanh_derivative</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span></div>
+<span class="w">      </span><span class="sd">&quot;&quot;&quot;Computes the derivative of the hyperbolic tangent function for the given input.</span>
+
+<span class="sd">      :param x: The values for which the derivative of the hyperbolic tangent function needs to be computed.</span>
+<span class="sd">      :type x: tensor</span>
+<span class="sd">      :return: The computed derivative values corresponding to the input x.</span>
+<span class="sd">      :rtype: tensor</span>
+<span class="sd">      &quot;&quot;&quot;</span>
+      <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Activations.linear">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.activations.Activations.linear">[docs]</a>
   <span class="k">def</span><span class="w"> </span><span class="nf">linear</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">x</span></div>
+<span class="w">      </span><span class="sd">&quot;&quot;&quot;Computes the identity function for the given input.</span>
+
+<span class="sd">      :param x: The values for which the identity function needs to be computed.</span>
+<span class="sd">      :type x: tensor</span>
+<span class="sd">      :return: The values corresponding to the input x.</span>
+<span class="sd">      :rtype: tensor</span>
+<span class="sd">      &quot;&quot;&quot;</span>
+      <span class="k">return</span> <span class="n">x</span></div>
 
 
 <div class="viewcode-block" id="Activations.linear_derivative">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.activations.Activations.linear_derivative">[docs]</a>
   <span class="k">def</span><span class="w"> </span><span class="nf">linear_derivative</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">cp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="nb">list</span><span class="p">):</span>
-      <span class="k">return</span> <span class="n">cp</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
-    <span class="k">return</span> <span class="mi">1</span></div>
+<span class="w">      </span><span class="sd">&quot;&quot;&quot;Computes the derivative of the identity function for the given input.</span>
+
+<span class="sd">      :param x: The values for which the derivative of the identity function needs to be computed.</span>
+<span class="sd">      :type x: tensor</span>
+<span class="sd">      :return: The derivative values corresponding to the input x.</span>
+<span class="sd">      :rtype: tensor</span>
+<span class="sd">      &quot;&quot;&quot;</span>
+      <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">cp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="nb">list</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">cp</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+      <span class="k">return</span> <span class="mi">1</span></div>
 
 
 <div class="viewcode-block" id="Activations.relu">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.activations.Activations.relu">[docs]</a>
   <span class="k">def</span><span class="w"> </span><span class="nf">relu</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">cp</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">x</span><span class="p">)</span></div>
+<span class="w">      </span><span class="sd">&quot;&quot;&quot;Computes the rectified linear unit (ReLU) function for the given input.</span>
+
+<span class="sd">      :param x: The values for which the ReLU function needs to be computed.</span>
+<span class="sd">      :type x: tensor</span>
+<span class="sd">      :return: The ReLU values corresponding to the input x.</span>
+<span class="sd">      :rtype: tensor</span>
+<span class="sd">      &quot;&quot;&quot;</span>
+      <span class="k">return</span> <span class="n">cp</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">x</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Activations.relu_derivative">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.activations.Activations.relu_derivative">[docs]</a>
   <span class="k">def</span><span class="w"> </span><span class="nf">relu_derivative</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="nb">list</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">cp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
-      <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-      <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-      <span class="k">return</span> <span class="n">x</span>
-    <span class="k">else</span><span class="p">:</span>
-      <span class="k">return</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span></div>
+<span class="w">      </span><span class="sd">&quot;&quot;&quot;Computes the derivative of the rectified linear unit (ReLU) function for the given input.</span>
+
+<span class="sd">      :param x: The values for which the derivative of the ReLU function needs to be computed.</span>
+<span class="sd">      :type x: tensor</span>
+<span class="sd">      :return: The derivative ReLU values corresponding to the input x.</span>
+<span class="sd">      :rtype: tensor</span>
+<span class="sd">      &quot;&quot;&quot;</span>
+      <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="nb">list</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">cp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+        <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="n">x</span>
+      <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span></div>
 
 
 <div class="viewcode-block" id="Activations.softmax">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.activations.Activations.softmax">[docs]</a>
   <span class="k">def</span><span class="w"> </span><span class="nf">softmax</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="n">sums</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">sums</span> <span class="o">=</span> <span class="n">sums</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">sums</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">x</span> <span class="o">/=</span> <span class="n">sums</span>
-    <span class="k">return</span> <span class="n">x</span></div>
+<span class="w">      </span><span class="sd">&quot;&quot;&quot;Computes the softmax function for the given input.</span>
+
+<span class="sd">      :param x: The input values for which the softmax function needs to be computed.</span>
+<span class="sd">      :type x: tensor</span>
+<span class="sd">      :return: The computed softmax values corresponding to the input x.</span>
+<span class="sd">      :rtype: tensor</span>
+<span class="sd">      &quot;&quot;&quot;</span>
+      <span class="n">x</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+      <span class="n">sums</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+      <span class="n">sums</span> <span class="o">=</span> <span class="n">sums</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">sums</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">1</span><span class="p">)</span>
+      <span class="n">x</span> <span class="o">/=</span> <span class="n">sums</span>
+      <span class="k">return</span> <span class="n">x</span></div>
 </div>
 
 </pre></div>

@@ -68,8 +68,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#nillanet.loss.Loss.binary_crossentropy"><code class="docutils literal notranslate"><span class="pre">Loss.binary_crossentropy()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nillanet.loss.Loss.binary_crossentropy_derivative"><code class="docutils literal notranslate"><span class="pre">Loss.binary_crossentropy_derivative()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nillanet.loss.Loss.mse"><code class="docutils literal notranslate"><span class="pre">Loss.mse()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nillanet.loss.Loss.mse_alt"><code class="docutils literal notranslate"><span class="pre">Loss.mse_alt()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nillanet.loss.Loss.mse_alt_derivative"><code class="docutils literal notranslate"><span class="pre">Loss.mse_alt_derivative()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nillanet.loss.Loss.mse_derivative"><code class="docutils literal notranslate"><span class="pre">Loss.mse_derivative()</span></code></a></li>
 </ul>
 </li>
@@ -234,47 +232,155 @@ Defaults to <code class="docutils literal notranslate"><span class="pre">cupy.fl
 <dl class="py method">
 <dt class="sig sig-object py" id="nillanet.activations.Activations.linear">
 <span class="sig-name descname"><span class="pre">linear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/activations.html#Activations.linear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.activations.Activations.linear" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Computes the identity function for the given input.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>tensor</em>) – The values for which the identity function needs to be computed.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The values corresponding to the input x.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tensor</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nillanet.activations.Activations.linear_derivative">
 <span class="sig-name descname"><span class="pre">linear_derivative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/activations.html#Activations.linear_derivative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.activations.Activations.linear_derivative" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Computes the derivative of the identity function for the given input.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>tensor</em>) – The values for which the derivative of the identity function needs to be computed.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The derivative values corresponding to the input x.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tensor</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nillanet.activations.Activations.relu">
 <span class="sig-name descname"><span class="pre">relu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/activations.html#Activations.relu"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.activations.Activations.relu" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Computes the rectified linear unit (ReLU) function for the given input.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>tensor</em>) – The values for which the ReLU function needs to be computed.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The ReLU values corresponding to the input x.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tensor</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nillanet.activations.Activations.relu_derivative">
 <span class="sig-name descname"><span class="pre">relu_derivative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/activations.html#Activations.relu_derivative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.activations.Activations.relu_derivative" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Computes the derivative of the rectified linear unit (ReLU) function for the given input.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>tensor</em>) – The values for which the derivative of the ReLU function needs to be computed.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The derivative ReLU values corresponding to the input x.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tensor</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nillanet.activations.Activations.sigmoid">
 <span class="sig-name descname"><span class="pre">sigmoid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/activations.html#Activations.sigmoid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.activations.Activations.sigmoid" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Computes the sigmoid function for the given input.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>tensor</em>) – The values for which the sigmoid function needs to be computed.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The computed sigmoid values corresponding to the input x.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tensor</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nillanet.activations.Activations.sigmoid_derivative">
 <span class="sig-name descname"><span class="pre">sigmoid_derivative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/activations.html#Activations.sigmoid_derivative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.activations.Activations.sigmoid_derivative" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Computes the derivative of the sigmoid function for the given input.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>tensor</em>) – The values for which the derivative of the sigmoid function needs to be computed.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The computed derivative values corresponding to the input x.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tensor</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nillanet.activations.Activations.softmax">
 <span class="sig-name descname"><span class="pre">softmax</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/activations.html#Activations.softmax"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.activations.Activations.softmax" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Computes the softmax function for the given input.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>tensor</em>) – The input values for which the softmax function needs to be computed.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The computed softmax values corresponding to the input x.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tensor</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nillanet.activations.Activations.tanh">
 <span class="sig-name descname"><span class="pre">tanh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/activations.html#Activations.tanh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.activations.Activations.tanh" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Computes the hyperbolic tangent function for the given input.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>tensor</em>) – The values for which the hyperbolic tangent function needs to be computed.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The computed hyperbolic tangent values corresponding to the input x.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tensor</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nillanet.activations.Activations.tanh_derivative">
 <span class="sig-name descname"><span class="pre">tanh_derivative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/activations.html#Activations.tanh_derivative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.activations.Activations.tanh_derivative" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Computes the derivative of the hyperbolic tangent function for the given input.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>tensor</em>) – The values for which the derivative of the hyperbolic tangent function needs to be computed.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The computed derivative values corresponding to the input x.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tensor</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -286,32 +392,91 @@ Defaults to <code class="docutils literal notranslate"><span class="pre">cupy.fl
 <dl class="py method">
 <dt class="sig sig-object py" id="nillanet.loss.Loss.binary_crossentropy">
 <span class="sig-name descname"><span class="pre">binary_crossentropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yhat</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/loss.html#Loss.binary_crossentropy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.loss.Loss.binary_crossentropy" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Evaluates the distance between the true labels and the predicted probabilities
+by evaluating the logarithmic loss.</p>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>y: tensor</dt><dd><p>The true labels.</p>
+</dd>
+<dt>yhat: tensor</dt><dd><p>The predicted probabilities.</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h2>Returns<a class="headerlink" href="#returns" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>tensor:</dt><dd><p>The logarithmic loss between the true labels and the predicted probabilities.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nillanet.loss.Loss.binary_crossentropy_derivative">
 <span class="sig-name descname"><span class="pre">binary_crossentropy_derivative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yhat</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/loss.html#Loss.binary_crossentropy_derivative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.loss.Loss.binary_crossentropy_derivative" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Derivative of the binary cross-entropy loss function.</p>
+<section id="id1">
+<h2>Parameters<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>y: tensor</dt><dd><p>The true labels.</p>
+</dd>
+<dt>yhat: tensor</dt><dd><p>The predicted probabilities.</p>
+</dd>
+</dl>
+</section>
+<section id="id2">
+<h2>Returns<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>tensor:</dt><dd><p>The derivative of the binary cross-entropy loss function with respect to the inputs.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nillanet.loss.Loss.mse">
 <span class="sig-name descname"><span class="pre">mse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yhat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/loss.html#Loss.mse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.loss.Loss.mse" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="nillanet.loss.Loss.mse_alt">
-<span class="sig-name descname"><span class="pre">mse_alt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yhat</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/loss.html#Loss.mse_alt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.loss.Loss.mse_alt" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="nillanet.loss.Loss.mse_alt_derivative">
-<span class="sig-name descname"><span class="pre">mse_alt_derivative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yhat</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/loss.html#Loss.mse_alt_derivative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.loss.Loss.mse_alt_derivative" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Mean Squared Error (MSE) between predicted values and actual values.</p>
+<section id="id3">
+<h2>Parameters<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>yhat: tensor</dt><dd><p>The predicted values.</p>
+</dd>
+<dt>y: tensor</dt><dd><p>The actual values.</p>
+</dd>
+</dl>
+</section>
+<section id="id4">
+<h2>Returns<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>tensor:</dt><dd><p>The Mean Squared Error between the predicted and actual values.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nillanet.loss.Loss.mse_derivative">
 <span class="sig-name descname"><span class="pre">mse_derivative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yhat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/loss.html#Loss.mse_derivative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.loss.Loss.mse_derivative" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Derivative of the Mean Squared Error (MSE) loss function.</p>
+<section id="id5">
+<h2>Parameters<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>yhat: tensor</dt><dd><p>The predicted values.</p>
+</dd>
+<dt>y: tensor</dt><dd><p>The actual values.</p>
+</dd>
+</dl>
+</section>
+<section id="id6">
+<h2>Returns<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>tensor</dt><dd><p>The derivative of the MSE loss function with respect to the inputs.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
 
 </dd></dl>
 
