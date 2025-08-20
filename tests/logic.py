@@ -9,8 +9,8 @@ print(x.shape)
 print(y.shape)
 
 a = Activations()
-activation = a.sigmoid
-derivative1 = a.sigmoid_derivative
+activation = a.relu
+derivative1 = a.relu_derivative
 classifier = a.sigmoid
 derivative2 = a.sigmoid_derivative
 

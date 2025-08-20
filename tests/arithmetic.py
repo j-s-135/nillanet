@@ -4,13 +4,13 @@ from nillanet.loss import Loss
 from nillanet.distributions import Distributions
 
 d = Distributions()
-x,y = d.arithmetic_distribution(10,"add")
+x,y = d.arithmetic_distribution(10,"subtract")
 print(x.shape)
 print(y.shape)
 
 a = Activations()
-activation = a.sigmoid
-derivative1 = a.sigmoid_derivative
+activation = a.tanh
+derivative1 = a.tanh_derivative
 classifier = a.linear
 derivative2 = a.linear_derivative
 
@@ -22,7 +22,7 @@ input = x
 output = y
 features = x.shape[1]
 architecture = [2,4,1]
-learning_rate = 0.1
+learning_rate = 0.01
 epochs = 10000
 
 model = NN(features,architecture,activation,derivative1,classifier,derivative2,loss,derivative3,learning_rate)
