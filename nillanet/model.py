@@ -118,8 +118,8 @@ class NN(object):
             Ensures inputs/targets reside on device and are at least 2D.
     """
     # ensure inputs reside on device & 2D
-    x = cp.atleast_2d(cp.asarray(x))
-    y = cp.asarray(y)
+    x = cp.nan_to_num(cp.atleast_2d(cp.asarray(x)), nan=0.0)
+    y = cp.nan_to_num(cp.atleast_2d(cp.asarray(y)), nan=0.0)
 
     inputs = []
     raw_outputs = []
@@ -128,24 +128,25 @@ class NN(object):
     h = x
     for i in range(len(self.architecture)):
       inputs.append(h)
-      z = cp.atleast_2d(h @ self.W[i])
+      z = cp.nan_to_num(h @ self.W[i], nan=0.0)
       raw_outputs.append(z)
       if i == len(self.architecture) - 1:
-        h = self.classifier(z)
+        h = cp.nan_to_num(self.classifier(z), nan=0.0)
       else:
-        h = self.activation(z)
+        h = cp.nan_to_num(self.activation(z), nan=0.0)
 
     # backward
     prev_grad = None
     for i in range(len(self.architecture) - 1, -1, -1):
       if i == len(self.architecture) - 1:
-        loss_grad = self.loss_derivative(yhat=h, y=y)
-        grad = cp.atleast_2d(loss_grad * self.classifier_derivative(raw_outputs[i]))
+        loss_grad = cp.nan_to_num(self.loss_derivative(yhat=h, y=y), nan=0.0)
+        grad = cp.nan_to_num(loss_grad * self.classifier_derivative(raw_outputs[i]), nan=0.0)
       else:
-        grad = (prev_grad @ self.W[i + 1].T) * self.activation_derivative(raw_outputs[i])
+        grad = cp.nan_to_num((prev_grad @ self.W[i + 1].T) * self.activation_derivative(raw_outputs[i]), nan=0.0)
 
       # in-place weight update
       self.W[i] -= self.learning_rate * (inputs[i].T @ grad)
+      self.W[i] = cp.nan_to_num(self.W[i], nan=0.0)
       prev_grad = grad
 
   def predict(self, input):
@@ -158,17 +159,17 @@ class NN(object):
         Returns:
             cupy.ndarray: Model outputs of shape (n_samples, n_outputs).
     """
-    x = cp.asarray(input)
+    x = cp.atleast_2d(cp.asarray(input))
     bias = cp.ones((x.shape[0], 1), dtype=x.dtype)
     x = cp.concatenate((bias, x), axis=1)
 
     h = x
     for i in range(len(self.architecture)):
-      z = cp.atleast_2d(h @ self.W[i])
+      z = cp.nan_to_num(h @ self.W[i], nan=0.0)
       if i == len(self.architecture) - 1:
-        h = self.classifier(z)
+        h = cp.nan_to_num(self.classifier(z), nan=0.0)
       else:
-        h = self.activation(z)
+        h = cp.nan_to_num(self.activation(z), nan=0.0)
     return h
 
   def summary(self):
