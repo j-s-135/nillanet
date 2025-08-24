@@ -5,6 +5,9 @@ import math
 import random
 import re
 import pickle
+from nillanet.io import IO
+import tempfile
+import atexit
 import sys
 
 cp.random.seed()
@@ -15,7 +18,7 @@ class NN(object):
   """Minimal feedforward neural network using CuPy.
 
     This class implements batched SGD with configurable activation,
-    classifier, and loss functions. Inputs/targets are kept on device
+    resolver, and loss functions. Inputs/targets are kept on device
     to avoid host↔device copies.
 
     Args:
@@ -25,10 +28,10 @@ class NN(object):
             activation function.
         derivative1 (Callable[[cupy.ndarray], cupy.ndarray]): Derivative of
             ``activation`` evaluated at pre-activations.
-        classifier (Callable[[cupy.ndarray], cupy.ndarray]): Output-layer
+        resolver (Callable[[cupy.ndarray], cupy.ndarray]): Output-layer
             transfer function (e.g., identity, sigmoid, softmax).
         derivative2 (Callable[[cupy.ndarray], cupy.ndarray]): Derivative of
-            ``classifier`` evaluated at pre-activations.
+            ``resolver`` evaluated at pre-activations.
         loss (Callable[..., cupy.ndarray]): Loss function that accepts
             named arguments (e.g., ``yhat``, ``y``) and returns per-sample
             losses or their average.
@@ -44,17 +47,18 @@ class NN(object):
   """
 
   def __init__(self, features, architecture, activation, derivative1,
-               classifier, derivative2, loss, derivative3, learning_rate,
-               dtype=cp.float32):
+               resolver, derivative2, loss, derivative3, learning_rate,
+               dtype=cp.float32, backup="/tmp/model.pkl"):
     self.architecture = architecture
     self.activation = activation
     self.activation_derivative = derivative1
-    self.classifier = classifier
-    self.classifier_derivative = derivative2
+    self.resolver = resolver
+    self.resolver_derivative = derivative2
     self.loss = loss
     self.loss_derivative = derivative3
     self.learning_rate = learning_rate
     self.dtype = dtype
+    self.backup = backup
 
     # weights initialized from [-1, 1]
     self.W = []
@@ -65,7 +69,7 @@ class NN(object):
       self.W.append(w)
       features = nodes
 
-  def train(self, input, output, epochs=1, batch=0):
+  def train(self, input, output, epochs=1, batch=0, verbose=False, step=1000, autosave=False):
     """Train the model using simple SGD.
 
         Args:
@@ -90,20 +94,40 @@ class NN(object):
     bias = cp.ones((X.shape[0], 1), dtype=self.dtype)
     X = cp.concatenate((bias, X), axis=1)
 
+    io = IO()
+    minloss = 99999999
+    def verbose_output(epoch, h, y):
+        nonlocal minloss
+        loss = self.loss(yhat=h, y=y)
+        status = cp.mean(loss)
+        if status < minloss:
+            minloss = status
+            if autosave:
+                io.save(self, self.backup)
+        print("epoch %d loss %.2f" % (epoch, status))
+        print(status)
+        print(loss)
+
     n = X.shape[0]
     if batch == 1:
-      for _ in range(epochs):
+      for epoch in range(epochs):
         index = random.randint(0, n - 1)
-        self.batch(X[index], Y[index])
+        h = self.batch(X[index], Y[index])
+        if verbose and epoch % step == 0:
+            verbose_output(epoch, h, Y[index])
     elif batch == 0:
-      for _ in range(epochs):
-        self.batch(X, Y)
+      for epoch in range(epochs):
+        h = self.batch(X, Y)
+        if verbose and epoch % step == 0:
+            verbose_output(epoch, h, Y)
     elif 1 < batch < n:
-      for _ in range(epochs):
+      for epoch in range(epochs):
         index = random.randint(0, n - batch)
         x = X[index:index + batch]
         y = Y[index:index + batch]
-        self.batch(x, y)
+        h = self.batch(x, y)
+        if verbose and epoch % step == 0:
+            verbose_output(epoch, h, y)
     else:
       sys.exit(f"improper batch size {batch}")
 
@@ -114,8 +138,8 @@ class NN(object):
             x (cupy.ndarray | numpy.ndarray): Inputs, shape (B, D) or (D,).
             y (cupy.ndarray | numpy.ndarray): Targets, shape (B, K) or (K,).
 
-        Notes:
-            Ensures inputs/targets reside on device and are at least 2D.
+        Returns:
+            h: the predictions as a tensor
     """
     # ensure inputs reside on device & 2D
     x = cp.nan_to_num(cp.atleast_2d(cp.asarray(x)), nan=0.0)
@@ -131,7 +155,7 @@ class NN(object):
       z = cp.nan_to_num(h @ self.W[i], nan=0.0)
       raw_outputs.append(z)
       if i == len(self.architecture) - 1:
-        h = cp.nan_to_num(self.classifier(z), nan=0.0)
+        h = cp.nan_to_num(self.resolver(z), nan=0.0)
       else:
         h = cp.nan_to_num(self.activation(z), nan=0.0)
 
@@ -140,7 +164,7 @@ class NN(object):
     for i in range(len(self.architecture) - 1, -1, -1):
       if i == len(self.architecture) - 1:
         loss_grad = cp.nan_to_num(self.loss_derivative(yhat=h, y=y), nan=0.0)
-        grad = cp.nan_to_num(loss_grad * self.classifier_derivative(raw_outputs[i]), nan=0.0)
+        grad = cp.nan_to_num(loss_grad * self.resolver_derivative(raw_outputs[i]), nan=0.0)
       else:
         grad = cp.nan_to_num((prev_grad @ self.W[i + 1].T) * self.activation_derivative(raw_outputs[i]), nan=0.0)
 
@@ -148,6 +172,8 @@ class NN(object):
       self.W[i] -= self.learning_rate * (inputs[i].T @ grad)
       self.W[i] = cp.nan_to_num(self.W[i], nan=0.0)
       prev_grad = grad
+
+    return h
 
   def predict(self, input):
     """Run a forward pass to produce predictions.
@@ -167,7 +193,7 @@ class NN(object):
     for i in range(len(self.architecture)):
       z = cp.nan_to_num(h @ self.W[i], nan=0.0)
       if i == len(self.architecture) - 1:
-        h = cp.nan_to_num(self.classifier(z), nan=0.0)
+        h = cp.nan_to_num(self.resolver(z), nan=0.0)
       else:
         h = cp.nan_to_num(self.activation(z), nan=0.0)
     return h

@@ -11,7 +11,7 @@ print(y.shape)
 a = Activations()
 activation = a.relu
 derivative1 = a.relu_derivative
-classifier = a.sigmoid
+resolver = a.sigmoid
 derivative2 = a.sigmoid_derivative
 
 l = Loss()
@@ -25,7 +25,7 @@ architecture = [4,8,1]
 learning_rate = 0.1
 epochs = 10000
 
-model = NN(features,architecture,activation,derivative1,classifier,derivative2,loss,derivative3,learning_rate)
+model = NN(features,architecture,activation,derivative1,resolver,derivative2,loss,derivative3,learning_rate)
 model.train(input,output,epochs)
 prediction = model.predict(x)
 

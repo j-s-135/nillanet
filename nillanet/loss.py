@@ -22,7 +22,9 @@ class Loss(object):
       tensor:
           The Mean Squared Error between the predicted and actual values.
       """
-      return cp.mean((yhat - y)**2)
+      if yhat.shape == y.shape:
+          return cp.mean((yhat - y)**2)
+      return cp.mean((yhat - cp.reshape(y,yhat.shape))**2)
 
   def mse_derivative(self,yhat,y):
     """
@@ -44,7 +46,7 @@ class Loss(object):
         return yhat - y
     return yhat - cp.reshape(y,yhat.shape)
 
-  def binary_crossentropy(self,y,yhat):
+  def binary_crossentropy(self,y,yhat,epsilon=1e-15):
       """
       Evaluates the distance between the true labels and the predicted probabilities
       by evaluating the logarithmic loss.
@@ -61,7 +63,7 @@ class Loss(object):
       tensor:
           The logarithmic loss between the true labels and the predicted probabilities.
       """
-      return -(y * cp.log(yhat) + (1 - y) * cp.log(1 - yhat))
+      return -(y * cp.log(cp.maximum(yhat,epsilon)) + (1 - y) * cp.log(cp.maximum(1 - yhat,epsilon)))
 
   def binary_crossentropy_derivative(self,y,yhat):
     """
