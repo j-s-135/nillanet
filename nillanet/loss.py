@@ -6,6 +6,44 @@ class Loss(object):
   def __init__(self):
     pass
 
+  def mae(self,yhat,y):
+      """
+      Mean Absolute Error (MAE) between predicted values and actual values.
+
+      Parameters
+      -----------
+      yhat: tensor
+          The predicted values.
+      y: tensor
+          The actual values.
+
+      Returns
+      -------------
+      tensor:
+          The Mean Absolute Error between the predicted and actual values.
+      """
+      return cp.mean(cp.abs(cp.asarray(yhat) - cp.asarray(y)))
+
+  def mae_derivative(self,yhat,y):
+    """
+    Derivative of the Mean Absolute Error (MAE) loss function.
+
+    Parameters
+    ----------
+    yhat: tensor
+        The predicted values.
+    y: tensor
+        The actual values.
+
+    Returns
+    -------
+    tensor
+        The derivative of the MAE loss function with respect to the inputs.
+    """
+    n = yhat.shape[0]
+    diff = yhat - y
+    return (diff > 0).astype(diff.dtype)/n - (diff < 0).astype(diff.dtype)/n
+
   def mse(self,yhat,y):
       """
       Mean Squared Error (MSE) between predicted values and actual values.

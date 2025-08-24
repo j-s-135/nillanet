@@ -88,12 +88,10 @@ class Activations(object):
       :return: The derivative ReLU values corresponding to the input x.
       :rtype: tensor
       """
-      if isinstance(x,list) or isinstance(x,cp.ndarray):
-        x[x > 0] = 1
-        x[x < 0] = 0
-        return x
-      else:
-        return 1 if x > 0 else 0
+      a = cp.asarray(x)
+      a[a > 0] = 1
+      a[a < 0] = 0
+      return a
 
   def softmax(self,x):
       """Computes the softmax function for the given input.
@@ -103,8 +101,8 @@ class Activations(object):
       :return: The computed softmax values corresponding to the input x.
       :rtype: tensor
       """
-      x = cp.exp(x)
-      sums = cp.sum(x, axis=1)
+      a = cp.exp(x)
+      sums = cp.sum(a, axis=1)
       sums = sums.reshape(sums.shape[0],1)
-      x /= sums
-      return x
+      a /= sums
+      return a

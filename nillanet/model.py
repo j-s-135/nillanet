@@ -7,8 +7,10 @@ import re
 import pickle
 from nillanet.io import IO
 import tempfile
-import atexit
+import logging
 import sys
+
+logging.basicConfig(level=logging.INFO, force=True, format="%(message)s")
 
 cp.random.seed()
 cp.set_printoptions(precision=2,floatmode='fixed',suppress=True)
@@ -40,6 +42,7 @@ class NN(object):
         learning_rate (float): SGD step size.
         dtype (cupy.dtype, optional): Floating point dtype for parameters and data.
             Defaults to ``cupy.float32``.
+        backup (str): Path for saving the highest performing model during training.
 
     Attributes:
         W (list[cupy.ndarray]): Layer weight matrices; ``W[i]`` has shape
@@ -48,7 +51,7 @@ class NN(object):
 
   def __init__(self, features, architecture, activation, derivative1,
                resolver, derivative2, loss, derivative3, learning_rate,
-               dtype=cp.float32, backup="/tmp/model.pkl"):
+               dtype=cp.float32, backup="/tmp/nn.pkl"):
     self.architecture = architecture
     self.activation = activation
     self.activation_derivative = derivative1
@@ -82,6 +85,9 @@ class NN(object):
                 - ``1``: sample a single example per step (pure SGD)
                 - ``0``: use all samples per step (full batch)
                 - ``>1`` and ``< len(Y)``: use that mini-batch size per step
+            verbose (bool): Print progress to stdout.
+            step (int): Print progress every ``step`` epochs.
+            autosave (bool): Save the model with the highest loss to disk.
 
         Raises:
             SystemExit: If ``batch`` is invalid.
@@ -112,16 +118,16 @@ class NN(object):
         index = random.randint(0, n - 1)
         h = self.batch(X[index], Y[index])
         if epoch % step == 0:
-            status = progress(epoch, h, Y[index])
+            prog = progress(epoch, h, Y[index])
             if verbose:
-                print("epoch %d loss %.2f" % (epoch, status))
+                logging.info("epoch %d loss %.8f" % (epoch, prog))
     elif batch == 0:
       for epoch in range(epochs):
         h = self.batch(X, Y)
         if epoch % step == 0:
-            status = progress(epoch, h, Y)
+            prog = progress(epoch, h, Y)
             if verbose:
-                print("epoch %d loss %.2f" % (epoch, status))
+                logging.info("epoch %d loss %.8f" % (epoch, prog))
     elif 1 < batch < n:
       for epoch in range(epochs):
         index = random.randint(0, n - batch)
@@ -129,9 +135,9 @@ class NN(object):
         y = Y[index:index + batch]
         h = self.batch(x, y)
         if epoch % step == 0:
-            status = progress(epoch, h, y)
+            prog = progress(epoch, h, y)
             if verbose:
-                print("epoch %d loss %.2f" % (epoch, status))
+                logging.info("epoch %d loss %.8f" % (epoch, prog))
     else:
       sys.exit(f"improper batch size {batch}")
 
@@ -208,6 +214,6 @@ class NN(object):
     for idx, w in enumerate(self.W):
       params = w.shape[0] * w.shape[1]
       total += params
-      print(f"layer {idx} weights {tuple(w.shape)} parameters {params}")
-    print(f"total parameters {total}")
+      logging.info(f"layer {idx} weights {tuple(w.shape)} parameters {params}")
+    logging.info(f"total parameters {total}")
 

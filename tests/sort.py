@@ -15,8 +15,8 @@ resolver = a.linear
 derivative2 = a.linear_derivative
 
 l = Loss()
-loss = l.mse
-derivative3 = l.mse_derivative
+loss = l.mae
+derivative3 = l.mae_derivative
 
 input = x
 output = y
@@ -26,10 +26,17 @@ learning_rate = 0.01
 epochs = 10000
 
 model = NN(features,architecture,activation,derivative1,resolver,derivative2,loss,derivative3,learning_rate)
-model.train(input,output,epochs)
+model.train(input,output,epochs,verbose=True,step=1000,autosave=True)
 prediction = model.predict(x)
 
 print("prediction")
 print(prediction)
 print("expected")
 print(y)
+
+from nillanet.io import IO
+io = IO()
+best = io.load(model.backup)
+prediction = best.predict(x)
+print("best")
+print(prediction)

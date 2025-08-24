@@ -26,12 +26,12 @@ class Distributions(object):
           tuple of (generated vector of x-values, vector of expected y-values)
     """
     # random input values
-    x = cp.random.random((depth,1)).astype(cp.float64)
+    x = cp.random.random((depth,1)).astype(cp.float32)
     # target weight, bias
-    z = cp.random.random((2,1)).astype(cp.float64)
+    z = cp.random.random((2,1)).astype(cp.float32)
     # y = wx + b
     y = [ z[0] * x[j] + z[1] for j in range(0,len(x)) ]
-    y = cp.array(y).astype(cp.float64)
+    y = cp.array(y).astype(cp.float32)
     return x,y
 
   def logical_distribution(self, depth, mode):
@@ -46,8 +46,8 @@ class Distributions(object):
         Returns:
           tuple of (generated binary matrix, expected output)
     """
-    x = cp.round(cp.random.random((depth,2))).astype(cp.float64)
-    y = cp.zeros([depth,1]).astype(cp.float64).flatten()
+    x = cp.round(cp.random.random((depth,2))).astype(cp.float32)
+    y = cp.zeros([depth,1]).astype(cp.float32).flatten()
     if mode=="and":
       y = cp.array([x[j,0] * x[j,1] for j in range(0,len(x))])
     elif mode=="or":
@@ -76,8 +76,8 @@ class Distributions(object):
           SystemExit
               If the provided `mode` is not "summation" or "one_hot".
     """
-    x = cp.random.random((depth,2)).astype(cp.float64)
-    y = cp.zeros([depth,1]).astype(cp.float64)
+    x = cp.random.random((depth,2)).astype(cp.float32)
+    y = cp.zeros([depth,1]).astype(cp.float32)
     if mode=="add":
       y = cp.array([x[j,0] + x[j,1] for j in range(0,len(x))]) # weights = 1
     elif mode=="subtract":

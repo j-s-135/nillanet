@@ -4,6 +4,7 @@ from nillanet.loss import Loss
 from nillanet.distributions import Distributions
 
 # one hots
+print("one hots")
 
 d = Distributions()
 x,y = d.summation(10,3,mode="one_hot")
@@ -28,16 +29,23 @@ learning_rate = 0.1
 epochs = 1000
 
 model = NN(features,architecture,activation,derivative1,resolver,derivative2,loss,derivative3,learning_rate)
-model.train(input,output,epochs)
+model.train(input,output,epochs,verbose=True,step=100,autosave=True)
 prediction = model.predict(x)
 
-print("one hots")
 print("prediction")
 print(prediction)
 print("expected")
 print(y)
 
+from nillanet.io import IO
+io = IO()
+best = io.load(model.backup)
+prediction = best.predict(x)
+print("best")
+print(prediction)
+
 # summation
+print("summation")
 
 x,y = d.summation(10,4,"summation")
 print(x.shape)
@@ -62,7 +70,6 @@ model = NN(features,architecture,activation,derivative1,resolver,derivative2,los
 model.train(input,output,epochs)
 prediction = model.predict(x)
 
-print("summation")
 print("prediction")
 print(prediction)
 print("expected")
