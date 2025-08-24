@@ -1,6 +1,6 @@
 [project]
 name = "nillanet"
-version = "1.0.4"
+version = "1.0.5"
 description = "linear neural net"
 readme = "README.md"
 requires-python = ">=3.6"

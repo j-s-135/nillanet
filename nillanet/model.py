@@ -96,7 +96,7 @@ class NN(object):
 
     io = IO()
     minloss = 99999999
-    def verbose_output(epoch, h, y):
+    def progress(epoch, h, y):
         nonlocal minloss
         loss = self.loss(yhat=h, y=y)
         status = cp.mean(loss)
@@ -104,30 +104,34 @@ class NN(object):
             minloss = status
             if autosave:
                 io.save(self, self.backup)
-        print("epoch %d loss %.2f" % (epoch, status))
-        print(status)
-        print(loss)
+        return status
 
     n = X.shape[0]
     if batch == 1:
       for epoch in range(epochs):
         index = random.randint(0, n - 1)
         h = self.batch(X[index], Y[index])
-        if verbose and epoch % step == 0:
-            verbose_output(epoch, h, Y[index])
+        if epoch % step == 0:
+            status = progress(epoch, h, Y[index])
+            if verbose:
+                print("epoch %d loss %.2f" % (epoch, status))
     elif batch == 0:
       for epoch in range(epochs):
         h = self.batch(X, Y)
-        if verbose and epoch % step == 0:
-            verbose_output(epoch, h, Y)
+        if epoch % step == 0:
+            status = progress(epoch, h, Y)
+            if verbose:
+                print("epoch %d loss %.2f" % (epoch, status))
     elif 1 < batch < n:
       for epoch in range(epochs):
         index = random.randint(0, n - batch)
         x = X[index:index + batch]
         y = Y[index:index + batch]
         h = self.batch(x, y)
-        if verbose and epoch % step == 0:
-            verbose_output(epoch, h, y)
+        if epoch % step == 0:
+            status = progress(epoch, h, y)
+            if verbose:
+                print("epoch %d loss %.2f" % (epoch, status))
     else:
       sys.exit(f"improper batch size {batch}")
 
