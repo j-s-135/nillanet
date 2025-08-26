@@ -51,7 +51,7 @@ class NN(object):
 
   def __init__(self, features, architecture, activation, derivative1,
                resolver, derivative2, loss, derivative3, learning_rate,
-               dtype=cp.float32, backup="/tmp/nn.pkl"):
+               dtype=cp.float32, backup="/tmp/nn.pkl", initializer=None):
     self.architecture = architecture
     self.activation = activation
     self.activation_derivative = derivative1
@@ -62,13 +62,17 @@ class NN(object):
     self.learning_rate = learning_rate
     self.dtype = dtype
     self.backup = backup
+    self.initializer = initializer
 
-    # weights initialized from [-1, 1]
     self.W = []
     features += 1 # bias
     for i in range(len(self.architecture)):
       nodes = self.architecture[i]
-      w = 2 * cp.random.random((features, nodes), dtype=self.dtype) - 1
+      if self.initializer is None:
+          # weights initialized from [-1, 1]
+          w = 2 * cp.random.random((features, nodes), dtype=self.dtype) - 1
+      else:
+          w = cp.asarray(self.initializer((features, nodes)))
       self.W.append(w)
       features = nodes
 
@@ -105,12 +109,12 @@ class NN(object):
     def progress(epoch, h, y):
         nonlocal minloss
         loss = self.loss(yhat=h, y=y)
-        status = cp.mean(loss)
-        if status < minloss:
-            minloss = status
+        loss = cp.mean(loss)
+        if loss < minloss:
+            minloss = loss
             if autosave:
                 io.save(self, self.backup)
-        return status
+        return loss
 
     n = X.shape[0]
     if batch == 1:

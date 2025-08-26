@@ -61,8 +61,8 @@ class Loss(object):
           The Mean Squared Error between the predicted and actual values.
       """
       if yhat.shape == y.shape:
-          return cp.mean((yhat - y)**2)
-      return cp.mean((yhat - cp.reshape(y,yhat.shape))**2)
+          return cp.mean((y - yhat)**2)
+      return cp.mean((cp.reshape(y,yhat.shape) - yhat)**2)
 
   def mse_derivative(self,yhat,y):
     """
