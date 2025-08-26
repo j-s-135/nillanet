@@ -21,3 +21,7 @@ nillanet module
    :members:
    :undoc-members:
    :show-inheritance:
+.. automodule:: nillanet.initializer
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -86,6 +86,13 @@
 <li class="toctree-l3"><a class="reference internal" href="#nillanet.distributions.Distributions.summation"><code class="docutils literal notranslate"><span class="pre">Distributions.summation()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#nillanet.initializer.Initializer"><code class="docutils literal notranslate"><span class="pre">Initializer</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.initializer.Initializer.he"><code class="docutils literal notranslate"><span class="pre">Initializer.he()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.initializer.Initializer.normal"><code class="docutils literal notranslate"><span class="pre">Initializer.normal()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.initializer.Initializer.uniform"><code class="docutils literal notranslate"><span class="pre">Initializer.uniform()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.initializer.Initializer.xavier"><code class="docutils literal notranslate"><span class="pre">Initializer.xavier()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -659,6 +666,37 @@ Defaults to “one_hot”.</p></li>
 <dd class="field-odd"><p><strong>SystemExit if the provided mode is not &quot;summation&quot;</strong><strong> or </strong><strong>&quot;one_hot&quot;.</strong> – </p>
 </dd>
 </dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-nillanet.initializer">
+<dt class="sig sig-object py" id="nillanet.initializer.Initializer">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nillanet.initializer.</span></span><span class="sig-name descname"><span class="pre">Initializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distribution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/initializer.html#Initializer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.initializer.Initializer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Weight distributions for custom initializations.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.initializer.Initializer.he">
+<span class="sig-name descname"><span class="pre">he</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/initializer.html#Initializer.he"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.initializer.Initializer.he" title="Link to this definition"></a></dt>
+<dd><p>for relu activation function</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.initializer.Initializer.normal">
+<span class="sig-name descname"><span class="pre">normal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/initializer.html#Initializer.normal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.initializer.Initializer.normal" title="Link to this definition"></a></dt>
+<dd><p>bell shaped distribution</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.initializer.Initializer.uniform">
+<span class="sig-name descname"><span class="pre">uniform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/initializer.html#Initializer.uniform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.initializer.Initializer.uniform" title="Link to this definition"></a></dt>
+<dd><p>plateau shaped distribution</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.initializer.Initializer.xavier">
+<span class="sig-name descname"><span class="pre">xavier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/initializer.html#Initializer.xavier"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.initializer.Initializer.xavier" title="Link to this definition"></a></dt>
+<dd><p>for tanh or sigmoid activation function</p>
 </dd></dl>
 
 </dd></dl>
