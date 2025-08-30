@@ -40,9 +40,11 @@ class NN(object):
         derivative3 (Callable[..., cupy.ndarray]): Derivative of ``loss``
             with respect to predictions (same signature as ``loss``).
         learning_rate (float): SGD step size.
+        scheduler (Scheduler): Learning rate scheduler.
         dtype (cupy.dtype, optional): Floating point dtype for parameters and data.
             Defaults to ``cupy.float32``.
         backup (str): Path for saving the highest performing model during training.
+        initializer (Initializer): Function for initializing weights.
 
     Attributes:
         W (list[cupy.ndarray]): Layer weight matrices; ``W[i]`` has shape
@@ -50,7 +52,7 @@ class NN(object):
   """
 
   def __init__(self, features, architecture, activation, derivative1,
-               resolver, derivative2, loss, derivative3, learning_rate,
+               resolver, derivative2, loss, derivative3, learning_rate, scheduler=None,
                dtype=cp.float32, backup="/tmp/nn.pkl", initializer=None):
     self.architecture = architecture
     self.activation = activation
@@ -59,9 +61,10 @@ class NN(object):
     self.resolver_derivative = derivative2
     self.loss = loss
     self.loss_derivative = derivative3
-    self.learning_rate = learning_rate
+    self.lr = learning_rate
     self.dtype = dtype
     self.backup = backup
+    self.scheduler = scheduler
     self.initializer = initializer
 
     self.W = []
@@ -120,14 +123,14 @@ class NN(object):
     if batch == 1:
       for epoch in range(epochs):
         index = random.randint(0, n - 1)
-        h = self.batch(X[index], Y[index])
+        h = self.batch(X[index], Y[index], epoch, epochs)
         if epoch % step == 0:
             prog = progress(epoch, h, Y[index])
             if verbose:
                 logging.info("epoch %d loss %.8f" % (epoch, prog))
     elif batch == 0:
       for epoch in range(epochs):
-        h = self.batch(X, Y)
+        h = self.batch(X, Y, epoch, epochs)
         if epoch % step == 0:
             prog = progress(epoch, h, Y)
             if verbose:
@@ -137,7 +140,7 @@ class NN(object):
         index = random.randint(0, n - batch)
         x = X[index:index + batch]
         y = Y[index:index + batch]
-        h = self.batch(x, y)
+        h = self.batch(x, y, epoch, epochs)
         if epoch % step == 0:
             prog = progress(epoch, h, y)
             if verbose:
@@ -145,7 +148,7 @@ class NN(object):
     else:
       sys.exit(f"improper batch size {batch}")
 
-  def batch(self, x, y):
+  def batch(self, x, y, epoch, epochs):
     """Run a single forward/backward/update step.
 
         Args:
@@ -183,9 +186,12 @@ class NN(object):
         grad = cp.nan_to_num((prev_grad @ self.W[i + 1].T) * self.activation_derivative(raw_outputs[i]), nan=0.0)
 
       # in-place weight update
-      self.W[i] -= self.learning_rate * (inputs[i].T @ grad)
+      self.W[i] -= self.lr * (inputs[i].T @ grad)
       self.W[i] = cp.nan_to_num(self.W[i], nan=0.0)
       prev_grad = grad
+
+    if self.scheduler is not None:
+      self.lr = self.scheduler.step(epoch, epochs)
 
     return q
 
