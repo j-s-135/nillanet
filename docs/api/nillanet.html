@@ -87,6 +87,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#nillanet.initializer.Initializer"><code class="docutils literal notranslate"><span class="pre">Initializer</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.initializer.Initializer.__init__"><code class="docutils literal notranslate"><span class="pre">Initializer.__init__()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nillanet.initializer.Initializer.he"><code class="docutils literal notranslate"><span class="pre">Initializer.he()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nillanet.initializer.Initializer.normal"><code class="docutils literal notranslate"><span class="pre">Initializer.normal()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nillanet.initializer.Initializer.uniform"><code class="docutils literal notranslate"><span class="pre">Initializer.uniform()</span></code></a></li>
@@ -245,7 +246,7 @@ Defaults to <code class="docutils literal notranslate"><span class="pre">cupy.fl
 <dt class="sig sig-object py" id="nillanet.activations.Activations">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nillanet.activations.</span></span><span class="sig-name descname"><span class="pre">Activations</span></span><a class="reference internal" href="../_modules/nillanet/activations.html#Activations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.activations.Activations" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Activation functions for NN class.</p>
+<p>Nonlinearities for NN class.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nillanet.activations.Activations.linear">
 <span class="sig-name descname"><span class="pre">linear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/activations.html#Activations.linear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.activations.Activations.linear" title="Link to this definition"></a></dt>
@@ -566,7 +567,6 @@ by evaluating the logarithmic loss.</p>
 <dd class="field-odd"><p><strong>filename</strong> – Path to the output pickle file.</p>
 </dd>
 </dl>
-<p>CuPy arrays are picklable</p>
 </dd></dl>
 
 </dd></dl>
@@ -676,27 +676,113 @@ Defaults to “one_hot”.</p></li>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Weight distributions for custom initializations.</p>
 <dl class="py method">
+<dt class="sig sig-object py" id="nillanet.initializer.Initializer.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distribution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/initializer.html#Initializer.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.initializer.Initializer.__init__" title="Link to this definition"></a></dt>
+<dd><p>Models a configurable statistical distribution for initializing weights.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>distribution</strong> (<em>function</em>) – A function representing the desired
+distribution. If None, a default normal distribution will be used.</p></li>
+<li><p><strong>low</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – <dl class="simple">
+<dt>normal distribution:</dt><dd><p>the lower boundary for standard deviations away from the mean</p>
+</dd>
+<dt>otherwise:</dt><dd><p>the lower boundary of the abscissae of the distribution</p>
+</dd>
+</dl>
+<p>Defaults to 0.0.</p>
+</p></li>
+<li><p><strong>high</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – <dl class="simple">
+<dt>normal distribution:</dt><dd><p>the upper boundary for standard deviations away from the mean</p>
+</dd>
+<dt>otherwise:</dt><dd><p>the upper boundary of the abscissae of the distribution</p>
+</dd>
+</dl>
+<p>Defaults to 1.0.</p>
+</p></li>
+<li><p><strong>mean</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – The mean value for the distribution. Defaults to 0.0.</p></li>
+<li><p><strong>std</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – The standard deviation for the distribution. Defaults to 1.0.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="nillanet.initializer.Initializer.he">
 <span class="sig-name descname"><span class="pre">he</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/initializer.html#Initializer.he"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.initializer.Initializer.he" title="Link to this definition"></a></dt>
-<dd><p>for relu activation function</p>
+<dd><p>Generates random numbers with variance equal to 2 over the square of n.</p>
+<p><cite>He</cite> demonstrated its usefulness for the relu activation function.
+The <cite>low</cite> and <cite>high</cite> parameters are interpreted as the lower and upper bounds of the plateau.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>shape</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><em>tuple</em></a>) – The desired shape of the output array containing samples.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>numpy.ndarray</dt><dd><p>An array of random samples drawn from the truncated normal distribution.</p>
+</dd>
+</dl>
+</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nillanet.initializer.Initializer.normal">
 <span class="sig-name descname"><span class="pre">normal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/initializer.html#Initializer.normal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.initializer.Initializer.normal" title="Link to this definition"></a></dt>
-<dd><p>bell shaped distribution</p>
+<dd><p>Generates random numbers from a bell-shaped distribution within the defined range.</p>
+<p>Note that the <cite>low</cite> and <cite>high</cite> parameters are interpreted as standard deviations away from the mean.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>shape</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><em>tuple</em></a>) – The desired shape of the output array containing samples.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>numpy.ndarray</dt><dd><p>An array of random samples drawn from the truncated normal distribution.</p>
+</dd>
+</dl>
+</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nillanet.initializer.Initializer.uniform">
 <span class="sig-name descname"><span class="pre">uniform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/initializer.html#Initializer.uniform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.initializer.Initializer.uniform" title="Link to this definition"></a></dt>
-<dd><p>plateau shaped distribution</p>
+<dd><p>Generates random numbers from a plateau-shaped distribution within the defined range.</p>
+<p>The <cite>low</cite> and <cite>high</cite> parameters are interpreted as the lower and upper bounds of the plateau.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>shape</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><em>tuple</em></a>) – The desired shape of the output array containing samples.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>numpy.ndarray</dt><dd><p>An array of random samples drawn from the uniform distribution.</p>
+</dd>
+</dl>
+</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nillanet.initializer.Initializer.xavier">
 <span class="sig-name descname"><span class="pre">xavier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/initializer.html#Initializer.xavier"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.initializer.Initializer.xavier" title="Link to this definition"></a></dt>
-<dd><p>for tanh or sigmoid activation function</p>
+<dd><p>Generates random numbers with variance equal to 1 over the square of n.</p>
+<p><cite>Xavier</cite> demonstrated its usefulness for tanh or sigmoid activation functions.
+The <cite>low</cite> and <cite>high</cite> parameters are interpreted as the lower and upper bounds of the plateau.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>shape</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><em>tuple</em></a>) – The desired shape of the output array containing samples.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>numpy.ndarray</dt><dd><p>An array of random samples drawn from the truncated normal distribution.</p>
+</dd>
+</dl>
+</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>

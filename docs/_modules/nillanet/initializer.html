@@ -75,15 +75,40 @@
 <div class="viewcode-block" id="Initializer">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.initializer.Initializer">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Initializer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Weight distributions for custom initializations.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Initializer.__init__">
+<a class="viewcode-back" href="../../api/nillanet.html#nillanet.initializer.Initializer.__init__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distribution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">low</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">std</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Models a configurable statistical distribution for initializing weights.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            distribution (function): A function representing the desired</span>
+<span class="sd">                distribution. If None, a default normal distribution will be used.</span>
+<span class="sd">            low (float):</span>
+<span class="sd">                normal distribution:</span>
+<span class="sd">                    the lower boundary for standard deviations away from the mean</span>
+<span class="sd">                otherwise:</span>
+<span class="sd">                    the lower boundary of the abscissae of the distribution</span>
+<span class="sd">                Defaults to 0.0.</span>
+<span class="sd">            high (float):</span>
+<span class="sd">                normal distribution:</span>
+<span class="sd">                    the upper boundary for standard deviations away from the mean</span>
+<span class="sd">                otherwise:</span>
+<span class="sd">                    the upper boundary of the abscissae of the distribution</span>
+<span class="sd">                Defaults to 1.0.</span>
+<span class="sd">            mean (float): The mean value for the distribution. Defaults to 0.0.</span>
+<span class="sd">            std (float): The standard deviation for the distribution. Defaults to 1.0.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">distribution</span> <span class="o">=</span> <span class="n">distribution</span>
         <span class="k">if</span> <span class="n">distribution</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">distribution</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">normal</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">=</span> <span class="n">low</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">high</span> <span class="o">=</span> <span class="n">high</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mean</span> <span class="o">=</span> <span class="n">mean</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">std</span> <span class="o">=</span> <span class="n">std</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">std</span> <span class="o">=</span> <span class="n">std</span></div>
+
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shape</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">distribution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shape</span><span class="p">)</span>
@@ -91,28 +116,70 @@
 <div class="viewcode-block" id="Initializer.normal">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.initializer.Initializer.normal">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">normal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shape</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;bell shaped distribution&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generates random numbers from a bell-shaped distribution within the defined range.</span>
+
+<span class="sd">        Note that the `low` and `high` parameters are interpreted as standard deviations away from the mean.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            shape (tuple): The desired shape of the output array containing samples.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.ndarray</span>
+<span class="sd">                An array of random samples drawn from the truncated normal distribution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">stats</span><span class="o">.</span><span class="n">truncnorm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">low</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">high</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">std</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">shape</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Initializer.uniform">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.initializer.Initializer.uniform">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">uniform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shape</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;plateau shaped distribution&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generates random numbers from a plateau-shaped distribution within the defined range.</span>
+
+<span class="sd">        The `low` and `high` parameters are interpreted as the lower and upper bounds of the plateau.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            shape (tuple): The desired shape of the output array containing samples.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.ndarray</span>
+<span class="sd">                An array of random samples drawn from the uniform distribution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">stats</span><span class="o">.</span><span class="n">uniform</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">low</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">high</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">low</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">shape</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Initializer.xavier">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.initializer.Initializer.xavier">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">xavier</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shape</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;for tanh or sigmoid activation function&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generates random numbers with variance equal to 1 over the square of n.</span>
+
+<span class="sd">        `Xavier` demonstrated its usefulness for tanh or sigmoid activation functions.</span>
+<span class="sd">        The `low` and `high` parameters are interpreted as the lower and upper bounds of the plateau.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            shape (tuple): The desired shape of the output array containing samples.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.ndarray</span>
+<span class="sd">                An array of random samples drawn from the truncated normal distribution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">stats</span><span class="o">.</span><span class="n">truncnorm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">low</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">high</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="o">/</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">shape</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Initializer.he">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.initializer.Initializer.he">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">he</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shape</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;for relu activation function&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generates random numbers with variance equal to 2 over the square of n.</span>
+
+<span class="sd">        `He` demonstrated its usefulness for the relu activation function.</span>
+<span class="sd">        The `low` and `high` parameters are interpreted as the lower and upper bounds of the plateau.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            shape (tuple): The desired shape of the output array containing samples.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.ndarray</span>
+<span class="sd">                An array of random samples drawn from the truncated normal distribution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">stats</span><span class="o">.</span><span class="n">truncnorm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">low</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">high</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">2.0</span><span class="o">/</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">shape</span><span class="p">)</span></div>
 </div>
 
@@ -123,11 +190,11 @@
         <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span>
     <span class="p">)</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
-        <span class="n">low</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-        <span class="n">high</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">low</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">high</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">:</span>
-        <span class="n">mean</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
-        <span class="n">std</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+        <span class="n">mean</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+        <span class="n">std</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;shape </span><span class="si">%s</span><span class="s2"> low </span><span class="si">%s</span><span class="s2"> high </span><span class="si">%s</span><span class="s2"> mean </span><span class="si">%s</span><span class="s2"> std </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">))</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;normal&quot;</span><span class="p">)</span>
     <span class="n">intl</span> <span class="o">=</span> <span class="n">Initializer</span><span class="p">(</span><span class="n">distribution</span><span class="o">=</span><span class="n">Initializer</span><span class="o">.</span><span class="n">normal</span><span class="p">,</span> <span class="n">low</span><span class="o">=</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="n">high</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="o">=</span><span class="n">std</span><span class="p">)</span>

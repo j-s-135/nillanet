@@ -75,8 +75,8 @@
 <div class="viewcode-block" id="Activations">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.activations.Activations">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Activations</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<span class="w">  </span><span class="sd">&quot;&quot;&quot;Activation functions for NN class.</span>
-<span class="sd">  &quot;&quot;&quot;</span>
+
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;Nonlinearities for NN class.&quot;&quot;&quot;</span>
 
   <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">pass</span>
@@ -84,7 +84,8 @@
 <div class="viewcode-block" id="Activations.sigmoid">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.activations.Activations.sigmoid">[docs]</a>
   <span class="k">def</span><span class="w"> </span><span class="nf">sigmoid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
-<span class="w">      </span><span class="sd">&quot;&quot;&quot;Computes the sigmoid function for the given input.</span>
+<span class="w">      </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">      Computes the sigmoid function for the given input.</span>
 
 <span class="sd">      :param x: The values for which the sigmoid function needs to be computed.</span>
 <span class="sd">      :type x: tensor</span>
@@ -97,7 +98,8 @@
 <div class="viewcode-block" id="Activations.sigmoid_derivative">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.activations.Activations.sigmoid_derivative">[docs]</a>
   <span class="k">def</span><span class="w"> </span><span class="nf">sigmoid_derivative</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
-<span class="w">      </span><span class="sd">&quot;&quot;&quot;Computes the derivative of the sigmoid function for the given input.</span>
+<span class="w">      </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">      Computes the derivative of the sigmoid function for the given input.</span>
 
 <span class="sd">      :param x: The values for which the derivative of the sigmoid function needs to be computed.</span>
 <span class="sd">      :type x: tensor</span>
@@ -110,7 +112,8 @@
 <div class="viewcode-block" id="Activations.tanh">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.activations.Activations.tanh">[docs]</a>
   <span class="k">def</span><span class="w"> </span><span class="nf">tanh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
-<span class="w">      </span><span class="sd">&quot;&quot;&quot;Computes the hyperbolic tangent function for the given input.</span>
+<span class="w">      </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">      Computes the hyperbolic tangent function for the given input.</span>
 
 <span class="sd">      :param x: The values for which the hyperbolic tangent function needs to be computed.</span>
 <span class="sd">      :type x: tensor</span>
@@ -123,7 +126,8 @@
 <div class="viewcode-block" id="Activations.tanh_derivative">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.activations.Activations.tanh_derivative">[docs]</a>
   <span class="k">def</span><span class="w"> </span><span class="nf">tanh_derivative</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
-<span class="w">      </span><span class="sd">&quot;&quot;&quot;Computes the derivative of the hyperbolic tangent function for the given input.</span>
+<span class="w">      </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">      Computes the derivative of the hyperbolic tangent function for the given input.</span>
 
 <span class="sd">      :param x: The values for which the derivative of the hyperbolic tangent function needs to be computed.</span>
 <span class="sd">      :type x: tensor</span>
@@ -136,7 +140,8 @@
 <div class="viewcode-block" id="Activations.linear">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.activations.Activations.linear">[docs]</a>
   <span class="k">def</span><span class="w"> </span><span class="nf">linear</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
-<span class="w">      </span><span class="sd">&quot;&quot;&quot;Computes the identity function for the given input.</span>
+<span class="w">      </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">      Computes the identity function for the given input.</span>
 
 <span class="sd">      :param x: The values for which the identity function needs to be computed.</span>
 <span class="sd">      :type x: tensor</span>
@@ -149,7 +154,8 @@
 <div class="viewcode-block" id="Activations.linear_derivative">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.activations.Activations.linear_derivative">[docs]</a>
   <span class="k">def</span><span class="w"> </span><span class="nf">linear_derivative</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
-<span class="w">      </span><span class="sd">&quot;&quot;&quot;Computes the derivative of the identity function for the given input.</span>
+<span class="w">      </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">      Computes the derivative of the identity function for the given input.</span>
 
 <span class="sd">      :param x: The values for which the derivative of the identity function needs to be computed.</span>
 <span class="sd">      :type x: tensor</span>
@@ -164,7 +170,8 @@
 <div class="viewcode-block" id="Activations.relu">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.activations.Activations.relu">[docs]</a>
   <span class="k">def</span><span class="w"> </span><span class="nf">relu</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
-<span class="w">      </span><span class="sd">&quot;&quot;&quot;Computes the rectified linear unit (ReLU) function for the given input.</span>
+<span class="w">      </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">      Computes the rectified linear unit (ReLU) function for the given input.</span>
 
 <span class="sd">      :param x: The values for which the ReLU function needs to be computed.</span>
 <span class="sd">      :type x: tensor</span>
@@ -177,7 +184,8 @@
 <div class="viewcode-block" id="Activations.relu_derivative">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.activations.Activations.relu_derivative">[docs]</a>
   <span class="k">def</span><span class="w"> </span><span class="nf">relu_derivative</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
-<span class="w">      </span><span class="sd">&quot;&quot;&quot;Computes the derivative of the rectified linear unit (ReLU) function for the given input.</span>
+<span class="w">      </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">      Computes the derivative of the rectified linear unit (ReLU) function for the given input.</span>
 
 <span class="sd">      :param x: The values for which the derivative of the ReLU function needs to be computed.</span>
 <span class="sd">      :type x: tensor</span>
@@ -193,7 +201,8 @@
 <div class="viewcode-block" id="Activations.softmax">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.activations.Activations.softmax">[docs]</a>
   <span class="k">def</span><span class="w"> </span><span class="nf">softmax</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
-<span class="w">      </span><span class="sd">&quot;&quot;&quot;Computes the softmax function for the given input.</span>
+<span class="w">      </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">      Computes the softmax function for the given input.</span>
 
 <span class="sd">      :param x: The input values for which the softmax function needs to be computed.</span>
 <span class="sd">      :type x: tensor</span>
