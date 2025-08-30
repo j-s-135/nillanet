@@ -10,6 +10,7 @@ cp.random.seed()
 cp.set_printoptions(precision=2,floatmode='fixed',suppress=True)
 
 class Distributions(object):
+
   """Random training distributions for test modules."""
 
   def __init__(self):

@@ -1,6 +1,7 @@
 import cupy as cp
 
 class Loss(object):
+
   """Loss functions for NN class"""
 
   def __init__(self):

@@ -2,8 +2,8 @@ import cupy as cp
 import pickle
 
 class IO(object):
-  """Helper functions for NN class.
-  """
+
+  """Helper functions for NN class."""
 
   def __init__(self):
     pass
@@ -13,9 +13,7 @@ class IO(object):
 
        Args:
            filename: Path to the output pickle file.
-            
-       CuPy arrays are picklable
-    """ 
+    """
 
     with open(filename, "wb") as fh:
       pickle.dump(model, fh)
@@ -25,7 +23,6 @@ class IO(object):
     
     Args:
         filename: Path to the model pickle file.
-
     """
     with open(filename, "rb") as r:
       model = pickle.load(r)

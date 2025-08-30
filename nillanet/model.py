@@ -163,21 +163,21 @@ class NN(object):
     raw_outputs = []
 
     # forward
-    h = x
+    q = x
     for i in range(len(self.architecture)):
-      inputs.append(h)
-      z = cp.nan_to_num(h @ self.W[i], nan=0.0)
+      inputs.append(q)
+      z = cp.nan_to_num(q @ self.W[i], nan=0.0)
       raw_outputs.append(z)
       if i == len(self.architecture) - 1:
-        h = cp.nan_to_num(self.resolver(z), nan=0.0)
+        q = cp.nan_to_num(self.resolver(z), nan=0.0)
       else:
-        h = cp.nan_to_num(self.activation(z), nan=0.0)
+        q = cp.nan_to_num(self.activation(z), nan=0.0)
 
     # backward
     prev_grad = None
     for i in range(len(self.architecture) - 1, -1, -1):
       if i == len(self.architecture) - 1:
-        loss_grad = cp.nan_to_num(self.loss_derivative(yhat=h, y=y), nan=0.0)
+        loss_grad = cp.nan_to_num(self.loss_derivative(yhat=q, y=y), nan=0.0)
         grad = cp.nan_to_num(loss_grad * self.resolver_derivative(raw_outputs[i]), nan=0.0)
       else:
         grad = cp.nan_to_num((prev_grad @ self.W[i + 1].T) * self.activation_derivative(raw_outputs[i]), nan=0.0)
@@ -187,7 +187,7 @@ class NN(object):
       self.W[i] = cp.nan_to_num(self.W[i], nan=0.0)
       prev_grad = grad
 
-    return h
+    return q
 
   def predict(self, input):
     """Run a forward pass to produce predictions.
@@ -203,14 +203,14 @@ class NN(object):
     bias = cp.ones((x.shape[0], 1), dtype=x.dtype)
     x = cp.concatenate((bias, x), axis=1)
 
-    h = x
+    q = x
     for i in range(len(self.architecture)):
-      z = cp.nan_to_num(h @ self.W[i], nan=0.0)
+      z = cp.nan_to_num(q @ self.W[i], nan=0.0)
       if i == len(self.architecture) - 1:
-        h = cp.nan_to_num(self.resolver(z), nan=0.0)
+        q = cp.nan_to_num(self.resolver(z), nan=0.0)
       else:
-        h = cp.nan_to_num(self.activation(z), nan=0.0)
-    return h
+        q = cp.nan_to_num(self.activation(z), nan=0.0)
+    return q
 
   def summary(self):
     """Print layer shapes and total parameter count."""

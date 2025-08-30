@@ -2,14 +2,15 @@ import cupy as cp
 import math
 
 class Activations(object):
-  """Activation functions for NN class.
-  """
+
+  """Nonlinearities for NN class."""
 
   def __init__(self):
     pass
 
   def sigmoid(self,x):
-      """Computes the sigmoid function for the given input.
+      """
+      Computes the sigmoid function for the given input.
 
       :param x: The values for which the sigmoid function needs to be computed.
       :type x: tensor
@@ -19,7 +20,8 @@ class Activations(object):
       return 1 / (1 + cp.exp(-x))
 
   def sigmoid_derivative(self,x):
-      """Computes the derivative of the sigmoid function for the given input.
+      """
+      Computes the derivative of the sigmoid function for the given input.
 
       :param x: The values for which the derivative of the sigmoid function needs to be computed.
       :type x: tensor
@@ -29,7 +31,8 @@ class Activations(object):
       return self.sigmoid(x) * (1 - self.sigmoid(x))
 
   def tanh(self,x):
-      """Computes the hyperbolic tangent function for the given input.
+      """
+      Computes the hyperbolic tangent function for the given input.
 
       :param x: The values for which the hyperbolic tangent function needs to be computed.
       :type x: tensor
@@ -39,7 +42,8 @@ class Activations(object):
       return (1 - cp.exp(-2 * x)) / (1 + cp.exp(-2 * x))
 
   def tanh_derivative(self,x):
-      """Computes the derivative of the hyperbolic tangent function for the given input.
+      """
+      Computes the derivative of the hyperbolic tangent function for the given input.
 
       :param x: The values for which the derivative of the hyperbolic tangent function needs to be computed.
       :type x: tensor
@@ -49,7 +53,8 @@ class Activations(object):
       return 1 - (self.tanh(x) ** 2)
 
   def linear(self,x):
-      """Computes the identity function for the given input.
+      """
+      Computes the identity function for the given input.
 
       :param x: The values for which the identity function needs to be computed.
       :type x: tensor
@@ -59,7 +64,8 @@ class Activations(object):
       return x
 
   def linear_derivative(self,x):
-      """Computes the derivative of the identity function for the given input.
+      """
+      Computes the derivative of the identity function for the given input.
 
       :param x: The values for which the derivative of the identity function needs to be computed.
       :type x: tensor
@@ -71,7 +77,8 @@ class Activations(object):
       return 1
 
   def relu(self,x):
-      """Computes the rectified linear unit (ReLU) function for the given input.
+      """
+      Computes the rectified linear unit (ReLU) function for the given input.
 
       :param x: The values for which the ReLU function needs to be computed.
       :type x: tensor
@@ -81,7 +88,8 @@ class Activations(object):
       return cp.maximum(0,x)
 
   def relu_derivative(self,x):
-      """Computes the derivative of the rectified linear unit (ReLU) function for the given input.
+      """
+      Computes the derivative of the rectified linear unit (ReLU) function for the given input.
 
       :param x: The values for which the derivative of the ReLU function needs to be computed.
       :type x: tensor
@@ -94,7 +102,8 @@ class Activations(object):
       return a
 
   def softmax(self,x):
-      """Computes the softmax function for the given input.
+      """
+      Computes the softmax function for the given input.
 
       :param x: The input values for which the softmax function needs to be computed.
       :type x: tensor
