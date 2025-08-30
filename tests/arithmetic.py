@@ -2,6 +2,7 @@ from nillanet.model import NN
 from nillanet.activations import Activations
 from nillanet.loss import Loss
 from nillanet.distributions import Distributions
+from nillanet.initializer import Initializer
 
 d = Distributions()
 x,y = d.arithmetic_distribution(10,"subtract")
@@ -24,8 +25,9 @@ features = x.shape[1]
 architecture = [2,4,1]
 learning_rate = 0.01
 epochs = 1000
+initializer = Initializer(distribution=Initializer.xavier, low=-2, high=2, mean=0, std=1)
 
-model = NN(features,architecture,activation,derivative1,resolver,derivative2,loss,derivative3,learning_rate)
+model = NN(features,architecture,activation,derivative1,resolver,derivative2,loss,derivative3,learning_rate,initializer=initializer)
 model.train(input,output,epochs,verbose=True,step=100,autosave=True)
 prediction = model.predict(input)
 
