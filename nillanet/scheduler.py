@@ -9,23 +9,23 @@ class Scheduler:
         """Read parameters for initializing the scheduler.
 
         Args:
-            mode (str): the mode of learning rate decay
-                required
-            lr (float): the initial learning rate
-                required
-            lowbound (float): the lower bound for the learning rate
-                default: 1e-8
-            scaler (float): the scaling factor for the constant mode
-                range: { x | 0 < x < 1 }
-                optional, set zero to skip
-            warmup (int): the number of epochs for an optional warmup period
-                optional, set zero to skip
-            interval (int): the interval at which a step is applied
-                default: 1
-            maxsteps (int): the maximum number of updates applied to the learning rate
-                optional, set zero to skip
-            custom (function): a custom function for updating the learning rate
-                optional, set None to skip
+            mode (str): the mode of learning rate decay.
+                Required.
+            lr (float): the initial learning rate.
+                Required.
+            lowbound (float): the lower bound for the learning rate.
+                Default: 1e-8.
+            scaler (float): the scaling factor for the constant mode.
+                Range: { x | 0 < x < 1 }.
+                Optional, set zero to skip.
+            warmup (int): the number of epochs for an optional warmup period.
+                Optional, set zero to skip.
+            interval (int): the interval at which a step is applied.
+                Default: 1.
+            maxsteps (int): the maximum number of updates applied to the learning rate.
+                Optional, set zero to skip.
+            custom (function): a custom function for updating the learning rate.
+                Optional, set None to skip.
 
         Attributes:
             sigma (float): the current learning rate
