@@ -1,6 +1,5 @@
 nillanet module
 =========
-
 .. automodule:: nillanet.model
    :members:
    :undoc-members:
@@ -22,6 +21,10 @@ nillanet module
    :undoc-members:
    :show-inheritance:
 .. automodule:: nillanet.initializer
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: nillanet.scheduler
    :members:
    :undoc-members:
    :show-inheritance:
