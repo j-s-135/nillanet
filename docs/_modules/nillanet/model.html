@@ -113,9 +113,11 @@
 <span class="sd">        derivative3 (Callable[..., cupy.ndarray]): Derivative of ``loss``</span>
 <span class="sd">            with respect to predictions (same signature as ``loss``).</span>
 <span class="sd">        learning_rate (float): SGD step size.</span>
+<span class="sd">        scheduler (Scheduler): Learning rate scheduler.</span>
 <span class="sd">        dtype (cupy.dtype, optional): Floating point dtype for parameters and data.</span>
 <span class="sd">            Defaults to ``cupy.float32``.</span>
 <span class="sd">        backup (str): Path for saving the highest performing model during training.</span>
+<span class="sd">        initializer (Initializer): Function for initializing weights.</span>
 
 <span class="sd">    Attributes:</span>
 <span class="sd">        W (list[cupy.ndarray]): Layer weight matrices; ``W[i]`` has shape</span>
@@ -123,7 +125,7 @@
 <span class="sd">  &quot;&quot;&quot;</span>
 
   <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">architecture</span><span class="p">,</span> <span class="n">activation</span><span class="p">,</span> <span class="n">derivative1</span><span class="p">,</span>
-               <span class="n">resolver</span><span class="p">,</span> <span class="n">derivative2</span><span class="p">,</span> <span class="n">loss</span><span class="p">,</span> <span class="n">derivative3</span><span class="p">,</span> <span class="n">learning_rate</span><span class="p">,</span>
+               <span class="n">resolver</span><span class="p">,</span> <span class="n">derivative2</span><span class="p">,</span> <span class="n">loss</span><span class="p">,</span> <span class="n">derivative3</span><span class="p">,</span> <span class="n">learning_rate</span><span class="p">,</span> <span class="n">scheduler</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                <span class="n">dtype</span><span class="o">=</span><span class="n">cp</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">backup</span><span class="o">=</span><span class="s2">&quot;/tmp/nn.pkl&quot;</span><span class="p">,</span> <span class="n">initializer</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">architecture</span> <span class="o">=</span> <span class="n">architecture</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">activation</span> <span class="o">=</span> <span class="n">activation</span>
@@ -132,9 +134,10 @@
     <span class="bp">self</span><span class="o">.</span><span class="n">resolver_derivative</span> <span class="o">=</span> <span class="n">derivative2</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">loss</span> <span class="o">=</span> <span class="n">loss</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">loss_derivative</span> <span class="o">=</span> <span class="n">derivative3</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate</span> <span class="o">=</span> <span class="n">learning_rate</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">lr</span> <span class="o">=</span> <span class="n">learning_rate</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">dtype</span> <span class="o">=</span> <span class="n">dtype</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">backup</span> <span class="o">=</span> <span class="n">backup</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span> <span class="o">=</span> <span class="n">scheduler</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">initializer</span> <span class="o">=</span> <span class="n">initializer</span>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">W</span> <span class="o">=</span> <span class="p">[]</span>
@@ -195,14 +198,14 @@
     <span class="k">if</span> <span class="n">batch</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
       <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
         <span class="n">index</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">index</span><span class="p">],</span> <span class="n">Y</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">index</span><span class="p">],</span> <span class="n">Y</span><span class="p">[</span><span class="n">index</span><span class="p">],</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">epochs</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">epoch</span> <span class="o">%</span> <span class="n">step</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">prog</span> <span class="o">=</span> <span class="n">progress</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">Y</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
             <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
                 <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;epoch </span><span class="si">%d</span><span class="s2"> loss </span><span class="si">%.8f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="n">prog</span><span class="p">))</span>
     <span class="k">elif</span> <span class="n">batch</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
       <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
-        <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">epochs</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">epoch</span> <span class="o">%</span> <span class="n">step</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">prog</span> <span class="o">=</span> <span class="n">progress</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
@@ -212,7 +215,7 @@
         <span class="n">index</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">batch</span><span class="p">)</span>
         <span class="n">x</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">index</span><span class="p">:</span><span class="n">index</span> <span class="o">+</span> <span class="n">batch</span><span class="p">]</span>
         <span class="n">y</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[</span><span class="n">index</span><span class="p">:</span><span class="n">index</span> <span class="o">+</span> <span class="n">batch</span><span class="p">]</span>
-        <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">epochs</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">epoch</span> <span class="o">%</span> <span class="n">step</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">prog</span> <span class="o">=</span> <span class="n">progress</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
@@ -223,7 +226,7 @@
 
 <div class="viewcode-block" id="NN.batch">
 <a class="viewcode-back" href="../../api/nillanet.html#nillanet.model.NN.batch">[docs]</a>
-  <span class="k">def</span><span class="w"> </span><span class="nf">batch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+  <span class="k">def</span><span class="w"> </span><span class="nf">batch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">epochs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Run a single forward/backward/update step.</span>
 
 <span class="sd">        Args:</span>
@@ -261,9 +264,12 @@
         <span class="n">grad</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">nan_to_num</span><span class="p">((</span><span class="n">prev_grad</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">activation_derivative</span><span class="p">(</span><span class="n">raw_outputs</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">nan</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
 
       <span class="c1"># in-place weight update</span>
-      <span class="bp">self</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate</span> <span class="o">*</span> <span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">grad</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lr</span> <span class="o">*</span> <span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">grad</span><span class="p">)</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">nan_to_num</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">nan</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
       <span class="n">prev_grad</span> <span class="o">=</span> <span class="n">grad</span>
+
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">lr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="n">epochs</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">q</span></div>
 
