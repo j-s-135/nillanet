@@ -19,9 +19,12 @@ class Scheduler:
                 The lower bound for the learning rate.
                 Default: 1e-8.
             scaler (float):
-                The scaling factor for the constant mode.
-                Range: { x | 0 < x < 1 }.
-                Optional, set zero to skip.
+                Mode:
+                    The scaling factor for the constant mode only.
+                Range:
+                    { x | 0 < x < 1 }.
+                Optional:
+                    Set zero to skip.
             warmup (int):
                 The number of epochs for an optional warmup period.
                 Optional, set zero to skip.

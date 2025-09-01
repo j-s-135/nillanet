@@ -820,9 +820,15 @@ Required.</p></li>
 Required.</p></li>
 <li><p><strong>lowbound</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – The lower bound for the learning rate.
 Default: 1e-8.</p></li>
-<li><p><strong>scaler</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – The scaling factor for the constant mode.
-Range: { x | 0 &lt; x &lt; 1 }.
-Optional, set zero to skip.</p></li>
+<li><p><strong>scaler</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – <dl class="simple">
+<dt>Mode:</dt><dd><p>The scaling factor for the constant mode only.</p>
+</dd>
+<dt>Range:</dt><dd><p>{ x | 0 &lt; x &lt; 1 }.</p>
+</dd>
+<dt>Optional:</dt><dd><p>Set zero to skip.</p>
+</dd>
+</dl>
+</p></li>
 <li><p><strong>warmup</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – The number of epochs for an optional warmup period.
 Optional, set zero to skip.</p></li>
 <li><p><strong>interval</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – The interval at which a step is applied.
