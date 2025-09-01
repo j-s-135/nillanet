@@ -814,23 +814,23 @@ The <cite>low</cite> and <cite>high</cite> parameters are interpreted as the low
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>mode</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – the mode of learning rate decay
-required</p></li>
-<li><p><strong>lr</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – the initial learning rate
-required</p></li>
-<li><p><strong>lowbound</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – the lower bound for the learning rate
-default: 1e-8</p></li>
-<li><p><strong>scaler</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – the scaling factor for the constant mode
-range: { x | 0 &lt; x &lt; 1 }
-optional, set zero to skip</p></li>
-<li><p><strong>warmup</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the number of epochs for an optional warmup period
-optional, set zero to skip</p></li>
-<li><p><strong>interval</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the interval at which a step is applied
-default: 1</p></li>
-<li><p><strong>maxsteps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the maximum number of updates applied to the learning rate
-optional, set zero to skip</p></li>
-<li><p><strong>custom</strong> (<em>function</em>) – a custom function for updating the learning rate
-optional, set None to skip</p></li>
+<li><p><strong>mode</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – the mode of learning rate decay.
+Required.</p></li>
+<li><p><strong>lr</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – the initial learning rate.
+Required.</p></li>
+<li><p><strong>lowbound</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – the lower bound for the learning rate.
+Default: 1e-8.</p></li>
+<li><p><strong>scaler</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – the scaling factor for the constant mode.
+Range: { x | 0 &lt; x &lt; 1 }.
+Optional, set zero to skip.</p></li>
+<li><p><strong>warmup</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the number of epochs for an optional warmup period.
+Optional, set zero to skip.</p></li>
+<li><p><strong>interval</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the interval at which a step is applied.
+Default: 1.</p></li>
+<li><p><strong>maxsteps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the maximum number of updates applied to the learning rate.
+Optional, set zero to skip.</p></li>
+<li><p><strong>custom</strong> (<em>function</em>) – a custom function for updating the learning rate.
+Optional, set None to skip.</p></li>
 </ul>
 </dd>
 </dl>

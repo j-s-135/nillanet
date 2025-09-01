@@ -84,23 +84,23 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Read parameters for initializing the scheduler.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            mode (str): the mode of learning rate decay</span>
-<span class="sd">                required</span>
-<span class="sd">            lr (float): the initial learning rate</span>
-<span class="sd">                required</span>
-<span class="sd">            lowbound (float): the lower bound for the learning rate</span>
-<span class="sd">                default: 1e-8</span>
-<span class="sd">            scaler (float): the scaling factor for the constant mode</span>
-<span class="sd">                range: { x | 0 &lt; x &lt; 1 }</span>
-<span class="sd">                optional, set zero to skip</span>
-<span class="sd">            warmup (int): the number of epochs for an optional warmup period</span>
-<span class="sd">                optional, set zero to skip</span>
-<span class="sd">            interval (int): the interval at which a step is applied</span>
-<span class="sd">                default: 1</span>
-<span class="sd">            maxsteps (int): the maximum number of updates applied to the learning rate</span>
-<span class="sd">                optional, set zero to skip</span>
-<span class="sd">            custom (function): a custom function for updating the learning rate</span>
-<span class="sd">                optional, set None to skip</span>
+<span class="sd">            mode (str): the mode of learning rate decay.</span>
+<span class="sd">                Required.</span>
+<span class="sd">            lr (float): the initial learning rate.</span>
+<span class="sd">                Required.</span>
+<span class="sd">            lowbound (float): the lower bound for the learning rate.</span>
+<span class="sd">                Default: 1e-8.</span>
+<span class="sd">            scaler (float): the scaling factor for the constant mode.</span>
+<span class="sd">                Range: { x | 0 &lt; x &lt; 1 }.</span>
+<span class="sd">                Optional, set zero to skip.</span>
+<span class="sd">            warmup (int): the number of epochs for an optional warmup period.</span>
+<span class="sd">                Optional, set zero to skip.</span>
+<span class="sd">            interval (int): the interval at which a step is applied.</span>
+<span class="sd">                Default: 1.</span>
+<span class="sd">            maxsteps (int): the maximum number of updates applied to the learning rate.</span>
+<span class="sd">                Optional, set zero to skip.</span>
+<span class="sd">            custom (function): a custom function for updating the learning rate.</span>
+<span class="sd">                Optional, set None to skip.</span>
 
 <span class="sd">        Attributes:</span>
 <span class="sd">            sigma (float): the current learning rate</span>
