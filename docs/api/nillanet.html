@@ -94,6 +94,19 @@
 <li class="toctree-l3"><a class="reference internal" href="#nillanet.initializer.Initializer.xavier"><code class="docutils literal notranslate"><span class="pre">Initializer.xavier()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#nillanet.scheduler.Scheduler"><code class="docutils literal notranslate"><span class="pre">Scheduler</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.scheduler.Scheduler.__init__"><code class="docutils literal notranslate"><span class="pre">Scheduler.__init__()</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#nillanet.scheduler.Scheduler.sigma"><code class="docutils literal notranslate"><span class="pre">Scheduler.sigma</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nillanet.scheduler.Scheduler.steps"><code class="docutils literal notranslate"><span class="pre">Scheduler.steps</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.scheduler.Scheduler.constant"><code class="docutils literal notranslate"><span class="pre">Scheduler.constant()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.scheduler.Scheduler.cosine"><code class="docutils literal notranslate"><span class="pre">Scheduler.cosine()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.scheduler.Scheduler.inverse"><code class="docutils literal notranslate"><span class="pre">Scheduler.inverse()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.scheduler.Scheduler.linear"><code class="docutils literal notranslate"><span class="pre">Scheduler.linear()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nillanet.scheduler.Scheduler.step"><code class="docutils literal notranslate"><span class="pre">Scheduler.step()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -151,7 +164,7 @@ losses or their average.</p></li>
 <li><p><strong>derivative3</strong> (<em>Callable</em><em>[</em><em>...</em><em>, </em><a class="reference external" href="https://docs.cupy.dev/en/stable/reference/generated/cupy.ndarray.html#cupy.ndarray" title="(in CuPy v13.6.0)"><em>cupy.ndarray</em></a><em>]</em>) – Derivative of <code class="docutils literal notranslate"><span class="pre">loss</span></code>
 with respect to predictions (same signature as <code class="docutils literal notranslate"><span class="pre">loss</span></code>).</p></li>
 <li><p><strong>learning_rate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – SGD step size.</p></li>
-<li><p><strong>scheduler</strong> (<em>Scheduler</em>) – Learning rate scheduler.</p></li>
+<li><p><strong>scheduler</strong> (<a class="reference internal" href="#nillanet.scheduler.Scheduler" title="nillanet.scheduler.Scheduler"><em>Scheduler</em></a>) – Learning rate scheduler.</p></li>
 <li><p><strong>dtype</strong> (<em>cupy.dtype</em><em>, </em><em>optional</em>) – Floating point dtype for parameters and data.
 Defaults to <code class="docutils literal notranslate"><span class="pre">cupy.float32</span></code>.</p></li>
 <li><p><strong>backup</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Path for saving the highest performing model during training.</p></li>
@@ -783,6 +796,108 @@ The <cite>low</cite> and <cite>high</cite> parameters are interpreted as the low
 </dd>
 </dl>
 </p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-nillanet.scheduler">
+<dt class="sig sig-object py" id="nillanet.scheduler.Scheduler">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nillanet.scheduler.</span></span><span class="sig-name descname"><span class="pre">Scheduler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lowbound</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scaler</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warmup</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxsteps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/scheduler.html#Scheduler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.scheduler.Scheduler" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Learning rate scheduler for NN class</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.scheduler.Scheduler.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lowbound</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scaler</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warmup</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxsteps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/scheduler.html#Scheduler.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.scheduler.Scheduler.__init__" title="Link to this definition"></a></dt>
+<dd><p>Read parameters for initializing the scheduler.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mode</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – the mode of learning rate decay
+required</p></li>
+<li><p><strong>lr</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – the initial learning rate
+required</p></li>
+<li><p><strong>lowbound</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – the lower bound for the learning rate
+default: 1e-8</p></li>
+<li><p><strong>scaler</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – the scaling factor for the constant mode
+range: { x | 0 &lt; x &lt; 1 }
+optional, set zero to skip</p></li>
+<li><p><strong>warmup</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the number of epochs for an optional warmup period
+optional, set zero to skip</p></li>
+<li><p><strong>interval</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the interval at which a step is applied
+default: 1</p></li>
+<li><p><strong>maxsteps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the maximum number of updates applied to the learning rate
+optional, set zero to skip</p></li>
+<li><p><strong>custom</strong> (<em>function</em>) – a custom function for updating the learning rate
+optional, set None to skip</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nillanet.scheduler.Scheduler.sigma">
+<span class="sig-name descname"><span class="pre">sigma</span></span><a class="headerlink" href="#nillanet.scheduler.Scheduler.sigma" title="Link to this definition"></a></dt>
+<dd><p>the current learning rate</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nillanet.scheduler.Scheduler.steps">
+<span class="sig-name descname"><span class="pre">steps</span></span><a class="headerlink" href="#nillanet.scheduler.Scheduler.steps" title="Link to this definition"></a></dt>
+<dd><p>the number of updates applied so far</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.scheduler.Scheduler.constant">
+<span class="sig-name descname"><span class="pre">constant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epoch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/scheduler.html#Scheduler.constant"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.scheduler.Scheduler.constant" title="Link to this definition"></a></dt>
+<dd><p>varies sigma by a constant factor of scaler which ranges from 0 to 1</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.scheduler.Scheduler.cosine">
+<span class="sig-name descname"><span class="pre">cosine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epoch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/scheduler.html#Scheduler.cosine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.scheduler.Scheduler.cosine" title="Link to this definition"></a></dt>
+<dd><p>varies sigma trigonometrically from lr to lowbound</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.scheduler.Scheduler.inverse">
+<span class="sig-name descname"><span class="pre">inverse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epoch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/scheduler.html#Scheduler.inverse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.scheduler.Scheduler.inverse" title="Link to this definition"></a></dt>
+<dd><p>varies sigma as the inverse square of the number of steps taken</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.scheduler.Scheduler.linear">
+<span class="sig-name descname"><span class="pre">linear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epoch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/scheduler.html#Scheduler.linear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.scheduler.Scheduler.linear" title="Link to this definition"></a></dt>
+<dd><p>varies sigma linearly as the number of remaining epochs</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nillanet.scheduler.Scheduler.step">
+<span class="sig-name descname"><span class="pre">step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epoch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/scheduler.html#Scheduler.step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.scheduler.Scheduler.step" title="Link to this definition"></a></dt>
+<dd><p>Update the learning rate based on the current epoch and mode.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>epoch</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the current epoch</p></li>
+<li><p><strong>epochs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the total number of epochs</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the updated learning rate</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>sigma (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a>)</p>
 </dd>
 </dl>
 </dd></dl>
