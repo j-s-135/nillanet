@@ -28,7 +28,11 @@ epochs = 1000
 initializer = Initializer(distribution=Initializer.he, low=0, high=1, mean=0, std=0.5)
 
 model = NN(features,architecture,activation,derivative1,resolver,derivative2,loss,derivative3,learning_rate,initializer=initializer)
-model.train(input,output,epochs,verbose=True,step=100,autosave=True)
+model.summary()
+
+for epoch in range(epochs):
+    model.train(input,output,epoch,epochs,verbose=True,step=100,autosave=True)
+
 prediction = model.predict(x)
 
 print("prediction")

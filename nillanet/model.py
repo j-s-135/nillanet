@@ -79,15 +79,19 @@ class NN(object):
       self.W.append(w)
       features = nodes
 
-  def train(self, input, output, epochs=1, batch=0, verbose=False, step=1000, autosave=False):
-    """Train the model using simple SGD.
+  def train(self, input, output, epoch=1, epochs=1, batch=0, verbose=False, step=1000, autosave=False, minloss=[999999999]):
+    """Train the model for one epoch using simple SGD.
+
+        Each epoch is a full pass over the training data.
+        Note that your own external training loop is expected.
 
         Args:
             input (cupy.ndarray | numpy.ndarray): Training inputs of shape
               (n_samples, n_features). If NumPy, it will be moved to device.
             output (cupy.ndarray | numpy.ndarray): Training targets of shape
               (n_samples, n_outputs). If NumPy, it will be moved to device.
-            epochs: Number of SGD steps to run.
+            epoch: Step number of epoch.
+            epochs: Expected number of SGD steps that will be run.
             batch: One of:
                 - ``1``: sample a single example per step (pure SGD)
                 - ``0``: use all samples per step (full batch)
@@ -95,6 +99,7 @@ class NN(object):
             verbose (bool): Print progress to stdout.
             step (int): Print progress every ``step`` epochs.
             autosave (bool): Save the model with the highest loss to disk.
+            minloss (list[float]): Internal use only.
 
         Raises:
             SystemExit: If ``batch`` is invalid.
@@ -108,47 +113,49 @@ class NN(object):
     X = cp.concatenate((bias, X), axis=1)
 
     io = IO()
-    minloss = 99999999
-    def progress(epoch, h, y):
+    def progress(yhat, y):
         nonlocal minloss
-        loss = self.loss(yhat=h, y=y)
+        loss = self.loss(yhat=yhat, y=y)
         loss = cp.mean(loss)
-        if loss < minloss:
-            minloss = loss
+        if loss < minloss[0]:
+            minloss[0] = loss
             if autosave:
                 io.save(self, self.backup)
         return loss
 
     n = X.shape[0]
-    if batch == 1:
-      for epoch in range(epochs):
-        index = random.randint(0, n - 1)
-        h = self.batch(X[index], Y[index], epoch, epochs)
-        if epoch % step == 0:
-            prog = progress(epoch, h, Y[index])
-            if verbose:
-                logging.info("epoch %d loss %.8f" % (epoch, prog))
-    elif batch == 0:
-      for epoch in range(epochs):
-        h = self.batch(X, Y, epoch, epochs)
-        if epoch % step == 0:
-            prog = progress(epoch, h, Y)
-            if verbose:
-                logging.info("epoch %d loss %.8f" % (epoch, prog))
+    if batch == 0:
+        yhat = self.batch(X, Y)
+    elif batch == 1:
+      indices = list(range(n))
+      random.shuffle(indices)
+      yhat = cp.zeros(Y.shape)
+      for index in indices:
+        h = self.batch(X[index], Y[index])
+        yhat[index] = h.ravel()
     elif 1 < batch < n:
-      for epoch in range(epochs):
-        index = random.randint(0, n - batch)
+      indices = list(range(0,n,batch))
+      random.shuffle(indices)
+      yhat = cp.zeros(Y.shape)
+      for index in indices:
+        if index + batch > n:
+            continue
         x = X[index:index + batch]
         y = Y[index:index + batch]
-        h = self.batch(x, y, epoch, epochs)
-        if epoch % step == 0:
-            prog = progress(epoch, h, y)
-            if verbose:
-                logging.info("epoch %d loss %.8f" % (epoch, prog))
+        h = self.batch(x, y)
+        yhat[index:index + batch] = h.ravel()
     else:
       sys.exit(f"improper batch size {batch}")
 
-  def batch(self, x, y, epoch, epochs):
+    if epoch % step == 0:
+        prog = progress(yhat, Y)
+        if verbose:
+            logging.info("epoch %d loss %.8f" % (epoch, prog))
+
+    if self.scheduler is not None:
+      self.lr = self.scheduler.step(epoch, epochs)
+
+  def batch(self, x, y):
     """Run a single forward/backward/update step.
 
         Args:
@@ -156,7 +163,7 @@ class NN(object):
             y (cupy.ndarray | numpy.ndarray): Targets, shape (B, K) or (K,).
 
         Returns:
-            h: the predictions as a tensor
+            q: the predictions as a tensor
     """
     # ensure inputs reside on device & 2D
     x = cp.nan_to_num(cp.atleast_2d(cp.asarray(x)), nan=0.0)
@@ -189,9 +196,6 @@ class NN(object):
       self.W[i] -= self.lr * (inputs[i].T @ grad)
       self.W[i] = cp.nan_to_num(self.W[i], nan=0.0)
       prev_grad = grad
-
-    if self.scheduler is not None:
-      self.lr = self.scheduler.step(epoch, epochs)
 
     return q
 

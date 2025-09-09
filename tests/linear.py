@@ -26,7 +26,11 @@ learning_rate = 0.1
 epochs = 1000
 
 model = NN(features,architecture,activation,derivative1,resolver,derivative2,loss,derivative3,learning_rate)
-model.train(input,output,epochs,verbose=True,step=100,autosave=True)
+model.summary()
+
+for epoch in range(epochs):
+    model.train(input,output,epoch,epochs,verbose=True,step=100,autosave=True)
+
 prediction = model.predict(x)
 
 print("prediction")
