@@ -186,7 +186,7 @@ Defaults to <code class="docutils literal notranslate"><span class="pre">cupy.fl
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nillanet.model.NN.batch">
-<span class="sig-name descname"><span class="pre">batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/model.html#NN.batch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.model.NN.batch" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/model.html#NN.batch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.model.NN.batch" title="Link to this definition"></a></dt>
 <dd><p>Run a single forward/backward/update step.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -199,7 +199,7 @@ Defaults to <code class="docutils literal notranslate"><span class="pre">cupy.fl
 <dd class="field-even"><p>the predictions as a tensor</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>h</p>
+<dd class="field-odd"><p>q</p>
 </dd>
 </dl>
 </dd></dl>
@@ -230,8 +230,10 @@ Defaults to <code class="docutils literal notranslate"><span class="pre">cupy.fl
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nillanet.model.NN.train">
-<span class="sig-name descname"><span class="pre">train</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">autosave</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/model.html#NN.train"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.model.NN.train" title="Link to this definition"></a></dt>
-<dd><p>Train the model using simple SGD.</p>
+<span class="sig-name descname"><span class="pre">train</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">autosave</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minloss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[999999999]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nillanet/model.html#NN.train"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nillanet.model.NN.train" title="Link to this definition"></a></dt>
+<dd><p>Train the model for one epoch using simple SGD.</p>
+<p>Each epoch is a full pass over the training data.
+Note that your own external training loop is expected.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -239,7 +241,8 @@ Defaults to <code class="docutils literal notranslate"><span class="pre">cupy.fl
 (n_samples, n_features). If NumPy, it will be moved to device.</p></li>
 <li><p><strong>output</strong> (<a class="reference external" href="https://docs.cupy.dev/en/stable/reference/generated/cupy.ndarray.html#cupy.ndarray" title="(in CuPy v13.6.0)"><em>cupy.ndarray</em></a><em> | </em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a>) – Training targets of shape
 (n_samples, n_outputs). If NumPy, it will be moved to device.</p></li>
-<li><p><strong>epochs</strong> – Number of SGD steps to run.</p></li>
+<li><p><strong>epoch</strong> – Step number of epoch.</p></li>
+<li><p><strong>epochs</strong> – Expected number of SGD steps that will be run.</p></li>
 <li><p><strong>batch</strong> – One of:
 - <code class="docutils literal notranslate"><span class="pre">1</span></code>: sample a single example per step (pure SGD)
 - <code class="docutils literal notranslate"><span class="pre">0</span></code>: use all samples per step (full batch)
@@ -247,6 +250,7 @@ Defaults to <code class="docutils literal notranslate"><span class="pre">cupy.fl
 <li><p><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – Print progress to stdout.</p></li>
 <li><p><strong>step</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – Print progress every <code class="docutils literal notranslate"><span class="pre">step</span></code> epochs.</p></li>
 <li><p><strong>autosave</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – Save the model with the highest loss to disk.</p></li>
+<li><p><strong>minloss</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em>]</em>) – Internal use only.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
